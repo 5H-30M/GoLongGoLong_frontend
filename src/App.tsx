@@ -1,4 +1,6 @@
+import Header from "components/Header";
 import LoginPage from "pages/LoginPage";
+import MainAfterLoginPage from "pages/MainAfterLoginPage";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
@@ -8,6 +10,7 @@ function App() {
         <div>
             <Router>
                 <GlobalStyle />
+                <Header />
                 <Routes>
                     <Route path="/login" element={<LoginPage />}></Route>
                 </Routes>
