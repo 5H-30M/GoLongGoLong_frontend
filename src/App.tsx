@@ -1,3 +1,4 @@
+import Footer from "components/Footer";
 import Header from "components/Header";
 import LoginPage from "pages/LoginPage";
 import MainAfterLoginPage from "pages/MainAfterLoginPage";
@@ -15,6 +16,7 @@ function App() {
                     <Route path="/" element={<MainAfterLoginPage />}></Route>
                     <Route path="/login" element={<LoginPage />}></Route>
                 </Routes>
+                <Footer />
             </Router>
         </div>
     );
