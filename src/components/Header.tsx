@@ -50,10 +50,10 @@ const Header = () => {
         <Container>
             <Left>
                 <Link to="/" style={{ color: "black", textDecoration: "none" }}>
-                    <Img src={logo} width="40" />
+                    <Img src={logo} width="35" />
                 </Link>
                 <Link to="/" style={{ color: "black", textDecoration: "none" }}>
-                    <Logo fontSize="25">고롱고롱</Logo>
+                    <Logo fontSize="22">고롱고롱</Logo>
                 </Link>
             </Left>
             {renderRight()}
@@ -68,7 +68,7 @@ const Container = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 34px 68px;
+    padding: 18px 68px;
 `;
 const Left = styled.div`
     display: flex;
