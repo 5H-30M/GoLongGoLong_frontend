@@ -12,6 +12,7 @@ function App() {
                 <GlobalStyle />
                 <Header />
                 <Routes>
+                    <Route path="/" element={<MainAfterLoginPage />}></Route>
                     <Route path="/login" element={<LoginPage />}></Route>
                 </Routes>
             </Router>
