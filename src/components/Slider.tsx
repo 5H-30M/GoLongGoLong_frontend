@@ -110,7 +110,7 @@ export default Slider;
 
 const Container = styled.div`
     width: 100%;
-    overflow-x: hidden;
+    overflow: hidden;
     position: relative;
 `;
 const Slide = styled.div<{ x: number; transition: boolean }>`
@@ -122,6 +122,7 @@ const Slide = styled.div<{ x: number; transition: boolean }>`
 `;
 const Img = styled.img`
     width: 100vw;
+    object-fit: cover;
 `;
 const Chevron = styled.img`
     width: 9px;
@@ -133,8 +134,8 @@ const Before = styled.div`
     position: absolute;
     width: 40px;
     height: 35px;
-    left: 1327px;
-    top: 228px;
+    left: 86.3932vw;
+    top: 14.8438vw;
     background: rgba(0, 0, 0, 0.4);
     cursor: pointer;
 
@@ -148,5 +149,5 @@ const Before = styled.div`
     }
 `;
 const Next = styled(Before)`
-    left: 1367px;
+    left: calc(86.3932vw + 40px);
 `;
