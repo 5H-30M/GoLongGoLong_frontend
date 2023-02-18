@@ -25,8 +25,9 @@ const Container = styled.div`
     gap: 50px;
 `;
 const InnerContainer = styled.div`
-    width: 1200px;
+    width: 1040px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 30px;
 `;

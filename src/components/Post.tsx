@@ -31,6 +31,7 @@ const Post = (props: propsType) => {
 export default Post;
 
 const Container = styled.div`
+    width: 236px;
     display: flex;
     flex-direction: column;
     border-bottom: 4px solid #d0d0d0;
@@ -44,15 +45,13 @@ const PostInfo = styled.div`
     gap: 13px;
 `;
 const Thumbnail = styled.img`
-    width: 279px;
-    height: 176px;
+    height: 134px;
     background-color: #dfdfdf;
     border-radius: 10px;
     object-fit: cover;
 `;
 const Title = styled.text`
     font-size: 15px;
-    font-weight: bold;
 `;
 const Author = styled.text`
     font-size: 10px;
