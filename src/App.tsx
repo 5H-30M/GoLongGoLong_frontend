@@ -1,5 +1,6 @@
 import Footer from "components/Footer";
 import Header from "components/Header";
+import EpiloguePage from "pages/EpiloguePage";
 import LoginPage from "pages/LoginPage";
 import MainAfterLoginPage from "pages/MainAfterLoginPage";
 import React from "react";
@@ -15,6 +16,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<MainAfterLoginPage />}></Route>
                     <Route path="/login" element={<LoginPage />}></Route>
+                    <Route path="/epilogue" element={<EpiloguePage />}></Route>
                 </Routes>
                 <Footer />
             </Router>

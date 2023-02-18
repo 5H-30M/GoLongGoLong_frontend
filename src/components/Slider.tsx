@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+/* img files */
 import blockchain from "../assets/imgs/banners/blockchain.png";
 import afterstory from "../assets/imgs/banners/afterstory.png";
 import catinmytown from "../assets/imgs/banners/catinmytown.png";
@@ -89,11 +91,15 @@ const Slider = () => {
     return (
         <Container>
             <Slide x={x} transition={trans}>
-                <Img src={afterstory}></Img>
+                <Link to="/epilogue">
+                    <Img src={afterstory}></Img>
+                </Link>
                 <Img src={blockchain}></Img>
                 <Img src={urgentcats}></Img>
                 <Img src={catinmytown}></Img>
-                <Img src={afterstory}></Img>
+                <Link to="/epilogue">
+                    <Img src={afterstory}></Img>
+                </Link>
                 <Img src={blockchain}></Img>
             </Slide>
             <Before onClick={onClickBefore}>
