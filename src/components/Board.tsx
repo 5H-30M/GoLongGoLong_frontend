@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import Post from "./Post";
+import { Link } from "react-router-dom";
 /* 테스트용 이미지*/
 import img1 from "../assets/imgs/test/1.jpg";
 import img2 from "../assets/imgs/test/2.jpg";
@@ -50,11 +51,16 @@ const Board = () => {
                 })}
             </FilterMenu>
             <Posts>
-                <Post
-                    thumbnail={img1}
-                    title={"다리를 다친 뚜비를 도와주세요"}
-                    author={"카라카라케리"}
-                />
+                <Link
+                    to="/post"
+                    style={{ color: "black", textDecoration: "none" }}
+                >
+                    <Post
+                        thumbnail={img1}
+                        title={"다리를 다친 뚜비를 도와주세요"}
+                        author={"카라카라케리"}
+                    />
+                </Link>
                 <Post
                     thumbnail={img2}
                     title={"사랑이에게 사랑을 베풀어 주세요"}

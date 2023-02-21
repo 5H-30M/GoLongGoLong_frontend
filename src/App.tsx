@@ -1,11 +1,13 @@
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+/* components */
 import Footer from "components/Footer";
 import Header from "components/Header";
 import EpiloguePage from "pages/EpiloguePage";
 import LoginPage from "pages/LoginPage";
 import MainAfterLoginPage from "pages/MainAfterLoginPage";
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
+import PostPage from "pages/PostPage";
 
 function App() {
     return (
@@ -17,6 +19,7 @@ function App() {
                     <Route path="/" element={<MainAfterLoginPage />}></Route>
                     <Route path="/login" element={<LoginPage />}></Route>
                     <Route path="/epilogue" element={<EpiloguePage />}></Route>
+                    <Route path="/post" element={<PostPage />}></Route>
                 </Routes>
                 <Footer />
             </Router>
