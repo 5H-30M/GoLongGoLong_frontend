@@ -8,7 +8,7 @@ interface propsType {
     author: string;
 }
 
-const EpiloguePost = (props: propsType) => {
+const Post = (props: propsType) => {
     return (
         <Container>
             <PostInfo style={{ position: "relative" }}>
@@ -23,7 +23,7 @@ const EpiloguePost = (props: propsType) => {
     );
 };
 
-export default EpiloguePost;
+export default Post;
 
 const Mark = styled.div`
     width: 37px;
