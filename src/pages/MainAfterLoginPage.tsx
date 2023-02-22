@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Search from "components/Search";
-import Slider from "components/Slider";
-import Board from "components/Board";
+import Search from "components/Common/Search";
+import Slider from "components/MainAfterLoginPage/Slider";
+import Board from "components/MainAfterLoginPage/Board";
 
 const MainAfterLoginPage = () => {
     return (

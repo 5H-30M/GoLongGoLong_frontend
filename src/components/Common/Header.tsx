@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import logo from "../assets/imgs/logo.png";
-import interest from "../assets/imgs/interest.png";
-import notice from "../assets/imgs/notice.png";
+import logo from "../../assets/imgs/logo.png";
+import interest from "../../assets/imgs/interest.png";
+import notice from "../../assets/imgs/notice.png";
 import { Link } from "react-router-dom";
 
 const Header = () => {

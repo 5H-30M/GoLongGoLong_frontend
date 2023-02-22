@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import defaultImg from "../assets/imgs/default.png";
-import { Container, PostInfo, Thumbnail } from "./styles/Board";
+import defaultImg from "../../assets/imgs/default.png";
+import { Container, PostInfo, Thumbnail } from "../Common/BoardStyle";
 
 interface propsType {
     thumbnail: React.CSSProperties;

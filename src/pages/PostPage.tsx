@@ -1,6 +1,6 @@
-import Author from "components/Author";
-import PostContents from "components/PostContents";
-import PostInfo from "components/PostInfo";
+import Author from "components/Common/Author";
+import PostContents from "components/PostPage/PostContents";
+import PostInfo from "components/PostPage/PostInfo";
 import styled from "styled-components";
 
 const PostPage = () => {

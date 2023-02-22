@@ -3,14 +3,14 @@ import { useState } from "react";
 import Post from "./Post";
 import { Link } from "react-router-dom";
 /* 테스트용 이미지*/
-import img1 from "../assets/imgs/test/1.jpg";
-import img2 from "../assets/imgs/test/2.jpg";
-import img3 from "../assets/imgs/test/3.jpg";
-import img4 from "../assets/imgs/test/4.jpg";
-import img5 from "../assets/imgs/test/5.jpg";
-import img6 from "../assets/imgs/test/6.jpg";
-import img7 from "../assets/imgs/test/7.jpg";
-import img8 from "../assets/imgs/test/8.jpg";
+import img1 from "../../assets/imgs/test/1.jpg";
+import img2 from "../../assets/imgs/test/2.jpg";
+import img3 from "../../assets/imgs/test/3.jpg";
+import img4 from "../../assets/imgs/test/4.jpg";
+import img5 from "../../assets/imgs/test/5.jpg";
+import img6 from "../../assets/imgs/test/6.jpg";
+import img7 from "../../assets/imgs/test/7.jpg";
+import img8 from "../../assets/imgs/test/8.jpg";
 
 const Board = () => {
     const [currentMenu, setCurrentMenu] = useState<number>(0);

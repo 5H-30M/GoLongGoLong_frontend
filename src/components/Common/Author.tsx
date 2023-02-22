@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import img1 from "../assets/imgs/test/1.jpg";
+import img1 from "../../assets/imgs/test/1.jpg";
 
 const Author = () => {
     return (

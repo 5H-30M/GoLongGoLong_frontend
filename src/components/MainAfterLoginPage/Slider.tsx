@@ -2,12 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 /* img files */
-import blockchain from "../assets/imgs/banners/blockchain.png";
-import afterstory from "../assets/imgs/banners/afterstory.png";
-import catinmytown from "../assets/imgs/banners/catinmytown.png";
-import urgentcats from "../assets/imgs/banners/urgentcats.png";
-import leftChevron from "../assets/imgs/left-chevron.png";
-import rightChevron from "../assets/imgs/right-chevron.png";
+import blockchain from "../../assets/imgs/banners/blockchain.png";
+import afterstory from "../../assets/imgs/banners/afterstory.png";
+import catinmytown from "../../assets/imgs/banners/catinmytown.png";
+import urgentcats from "../../assets/imgs/banners/urgentcats.png";
+import leftChevron from "../../assets/imgs/left-chevron.png";
+import rightChevron from "../../assets/imgs/right-chevron.png";
 
 const Slider = () => {
     const [x, setX] = useState<number>(-100);

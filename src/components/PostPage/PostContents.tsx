@@ -1,5 +1,5 @@
-import img1 from "../assets/imgs/test/1.jpg";
-import { Container, Line } from "./styles/Post";
+import img1 from "../../assets/imgs/test/1.jpg";
+import { Container, Line } from "../Common/PostStyle";
 
 const PostContents = () => {
     return (

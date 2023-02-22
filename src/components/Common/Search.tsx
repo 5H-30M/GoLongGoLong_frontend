@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import search from "../assets/imgs/search.png";
+import search from "../../assets/imgs/search.png";
 
 const Search = () => {
     return (

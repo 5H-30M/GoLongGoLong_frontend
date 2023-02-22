@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import thumbnail from "../assets/imgs/test/1.jpg";
+import thumbnail from "../../assets/imgs/test/1.jpg";
 
 const PostInfo = () => {
     return (
