@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import defaultImg from "../assets/imgs/default.png";
+import { Container, PostInfo, Thumbnail, Title, Author } from "./styles/Board";
 
 interface propsType {
     thumbnail: React.CSSProperties;
@@ -10,7 +11,7 @@ interface propsType {
 const EpiloguePost = (props: propsType) => {
     return (
         <Container>
-            <PostInfo>
+            <PostInfo style={{ position: "relative" }}>
                 <Mark>후기</Mark>
                 <Thumbnail
                     src={props.thumbnail ? props.thumbnail : defaultImg}
@@ -24,27 +25,6 @@ const EpiloguePost = (props: propsType) => {
 
 export default EpiloguePost;
 
-const Thumbnail = styled.img`
-    height: 134px;
-    background-color: #dfdfdf;
-    border-radius: 10px;
-    object-fit: cover;
-`;
-const Container = styled.div`
-    width: 236px;
-    display: flex;
-    flex-direction: column;
-    border-bottom: 4px solid #d0d0d0;
-    padding-bottom: 15px;
-    margin: 25px 0px;
-    gap: 26px;
-`;
-const PostInfo = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
-    position: relative;
-`;
 const Mark = styled.div`
     width: 37px;
     height: 20px;
@@ -59,11 +39,4 @@ const Mark = styled.div`
     position: absolute;
     left: 10px;
     top: 10px;
-`;
-const Title = styled.text`
-    font-size: 15px;
-`;
-const Author = styled.text`
-    font-size: 10px;
-    color: #999999;
 `;
