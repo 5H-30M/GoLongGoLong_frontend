@@ -5,13 +5,13 @@ const Author = () => {
     return (
         <Container>
             <Box>
-                <Img src={img1}></Img>
+                <img src={img1}></img>
                 <Info>
-                    <Text fontSize="12">구조자</Text>
-                    <Text fontSize="17">냥냥아</Text>
+                    <text className="small">구조자</text>
+                    <text className="medium">냥냥아</text>
                 </Info>
             </Box>
-            <Text fontSize="12px">모금기간 : 2022.06.29 ~ 2022.07.27</Text>
+            <text className="small">모금기간 : 2022.06.29 ~ 2022.07.27</text>
         </Container>
     );
 };
@@ -30,17 +30,21 @@ const Box = styled.div`
     flex-direction: row;
     align-items: center;
     gap: 10px;
-`;
-const Img = styled.img`
-    height: 70px;
-    width: 70px;
-    object-fit: cover;
+
+    img {
+        height: 70px;
+        width: 70px;
+        object-fit: cover;
+    }
+    .small {
+        font-size: 12px;
+    }
+    .medium {
+        font-size: 17px;
+    }
 `;
 const Info = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
-`;
-const Text = styled.text`
-    font-size: ${(props) => props.fontSize}px;
 `;

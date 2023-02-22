@@ -8,6 +8,15 @@ const Container = styled.div`
     padding-bottom: 15px;
     margin: 25px 0px;
     gap: 26px;
+
+    /* text */
+    .title {
+        font-size: 15px;
+    }
+    .author {
+        font-size: 10px;
+        color: #999999;
+    }
 `;
 const PostInfo = styled.div`
     display: flex;
@@ -20,12 +29,4 @@ const Thumbnail = styled.img`
     border-radius: 10px;
     object-fit: cover;
 `;
-const Title = styled.text`
-    font-size: 15px;
-`;
-const Author = styled.text`
-    font-size: 10px;
-    color: #999999;
-`;
-
-export { Container, PostInfo, Thumbnail, Title, Author };
+export { Container, PostInfo, Thumbnail };

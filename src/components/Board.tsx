@@ -21,7 +21,7 @@ const Board = () => {
         {
             text: (
                 <>
-                    모금글&nbsp;&nbsp;<NumOfPost>34</NumOfPost>
+                    모금글&nbsp;&nbsp;<text>34</text>
                 </>
             ),
         },
@@ -113,6 +113,12 @@ const FilterMenu = styled.div`
     display: flex;
     flex-direction: row;
     gap: 57px;
+
+    text {
+        font-size: 20px;
+        color: #f1b95c;
+        font-weight: bold;
+    }
 `;
 const Menu = styled.button<{ border: string }>`
     font-size: 20px;
@@ -121,11 +127,6 @@ const Menu = styled.button<{ border: string }>`
     background-color: transparent;
     cursor: pointer;
     border-bottom: ${(props) => props.border};
-`;
-const NumOfPost = styled.text`
-    font-size: 20px;
-    color: #f1b95c;
-    font-weight: bold;
 `;
 const Posts = styled.div`
     display: flex;

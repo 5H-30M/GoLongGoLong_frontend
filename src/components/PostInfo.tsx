@@ -4,43 +4,43 @@ import thumbnail from "../assets/imgs/test/1.jpg";
 const PostInfo = () => {
     return (
         <Container>
-            <Text fontSize="30">까불이에게 삶의 희망을 주세요</Text>
-            <Box>
-                <Img src={thumbnail}></Img>
+            <text className="title">까불이에게 삶의 희망을 주세요</text>
+            <Div>
+                <img src={thumbnail}></img>
                 <Right>
-                    <ColumnBox>
-                        <Text fontSize="14">모인금액</Text>
-                        <RowBox>
-                            <Text fontSize="39">1,220,000</Text>
-                            <Text fontSize="14">원</Text>
-                        </RowBox>
-                    </ColumnBox>
-                    <ColumnBox>
-                        <Text fontSize="14">남은시간</Text>
-                        <RowBox>
-                            <Text fontSize="39">1</Text>
-                            <Text fontSize="14">일</Text>
-                        </RowBox>
-                    </ColumnBox>
-                    <ColumnBox>
-                        <Text fontSize="14">후원자</Text>
-                        <RowBox>
-                            <Text fontSize="39">189</Text>
-                            <Text fontSize="14">명</Text>
-                        </RowBox>
-                    </ColumnBox>
+                    <ColumnDiv>
+                        <text className="name">모인금액</text>
+                        <RowDiv>
+                            <text className="number">1,220,000</text>
+                            <text className="unit">원</text>
+                        </RowDiv>
+                    </ColumnDiv>
+                    <ColumnDiv>
+                        <text className="name">남은시간</text>
+                        <RowDiv>
+                            <text className="number">1</text>
+                            <text className="unit">일</text>
+                        </RowDiv>
+                    </ColumnDiv>
+                    <div>
+                        <text className="name">후원자</text>
+                        <RowDiv>
+                            <text className="number">189</text>
+                            <text className="unit">명</text>
+                        </RowDiv>
+                    </div>
                     <Line></Line>
-                    <RowBox>
-                        <Text fontSize="12">목표금액</Text>
-                        <Text fontSize="12">1,000,000원</Text>
-                    </RowBox>
-                    <RowBox>
-                        <Text fontSize="12">모금기간</Text>
-                        <Text fontSize="12">2022.06.29 ~ 2022.07.27</Text>
-                    </RowBox>
+                    <RowDiv>
+                        <text className="small">목표금액 1,000,000원</text>
+                    </RowDiv>
+                    <RowDiv>
+                        <text className="small">
+                            모금기간 2022.06.29 ~ 2022.07.27
+                        </text>
+                    </RowDiv>
                     <DonateButton>기부하기</DonateButton>
                 </Right>
-            </Box>
+            </Div>
         </Container>
     );
 };
@@ -53,31 +53,48 @@ const Container = styled.div`
     align-items: center;
     margin: 50px 0;
     gap: 50px;
+
+    /* text */
+    .title {
+        font-size: 30px;
+    }
+    .name {
+        font-size: 14px;
+    }
+    .number {
+        font-size: 39px;
+    }
+    .unit,
+    .small {
+        font-size: 12px;
+    }
 `;
-const Text = styled.text`
-    font-size: ${(props) => props.fontSize}px;
-`;
-const Box = styled.div`
+const Div = styled.div`
     display: flex;
     flex-direction: row;
     gap: 60px;
-`;
-const RowBox = styled(Box)`
-    align-items: flex-end;
-    gap: 5px;
-`;
-const Img = styled.img`
-    width: 573px;
-    height: 429px;
-    border-radius: 10px;
-    object-fit: cover;
+
+    img {
+        width: 573px;
+        height: 429px;
+        border-radius: 10px;
+        object-fit: cover;
+    }
 `;
 const Right = styled.div`
     display: flex;
     flex-direction: column;
     gap: 28px;
 `;
-const ColumnBox = styled(Right)`
+const ColumnDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+`;
+const RowDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
     gap: 5px;
 `;
 const Line = styled.div`

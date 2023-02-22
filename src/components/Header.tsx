@@ -14,22 +14,22 @@ const Header = () => {
                 ? result.push(
                       <Right>
                           <Link to="/interest">
-                              <Img src={interest} width="23" />
+                              <img src={interest} className="menu" />
                           </Link>
                           <Link to="/notice">
-                              <Img src={notice} width="25" />
+                              <img src={notice} className="menu" />
                           </Link>
                           <Link
                               to="/mydonation"
                               style={{ color: "black", textDecoration: "none" }}
                           >
-                              <Text fontSize="18">기부 현황</Text>
+                              <text className="menu">기부 현황</text>
                           </Link>
                           <Link
                               to="/logout"
                               style={{ color: "black", textDecoration: "none" }}
                           >
-                              <Text fontSize="18">로그아웃</Text>
+                              <text className="menu">로그아웃</text>
                           </Link>
                       </Right>
                   )
@@ -39,7 +39,7 @@ const Header = () => {
                               to="/login"
                               style={{ color: "black", textDecoration: "none" }}
                           >
-                              <Text fontSize="18">로그인</Text>
+                              <text className="menu">로그인</text>
                           </Link>
                       </Right>
                   );
@@ -50,10 +50,10 @@ const Header = () => {
         <Container>
             <Left>
                 <Link to="/" style={{ color: "black", textDecoration: "none" }}>
-                    <Img src={logo} width="35" />
+                    <img src={logo} className="logo" />
                 </Link>
                 <Link to="/" style={{ color: "black", textDecoration: "none" }}>
-                    <Logo fontSize="22">고롱고롱</Logo>
+                    <text className="logo">고롱고롱</text>
                 </Link>
             </Left>
             {renderRight()}
@@ -69,6 +69,18 @@ const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 18px 68px;
+
+    /* text */
+    .menu {
+        font-size: 18px;
+        width: 23px;
+    }
+    .logo {
+        font-size: 22px;
+        font-weight: 800;
+        font-color: "3e3e3e";
+        width: 35px;
+    }
 `;
 const Left = styled.div`
     display: flex;
@@ -77,20 +89,6 @@ const Left = styled.div`
     align-items: center;
     gap: 15px;
 `;
-const Right = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+const Right = styled(Left)`
     gap: 64px;
-`;
-const Img = styled.img`
-    width: ${(props) => props.width}px;
-`;
-const Text = styled.text`
-    font-size: ${(props) => props.fontSize}px;
-`;
-const Logo = styled(Text)`
-    font-weight: 800;
-    font-color: "3e3e3e";
 `;

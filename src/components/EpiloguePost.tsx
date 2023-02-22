@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import defaultImg from "../assets/imgs/default.png";
-import { Container, PostInfo, Thumbnail, Title, Author } from "./styles/Board";
+import { Container, PostInfo, Thumbnail } from "./styles/Board";
 
 interface propsType {
     thumbnail: React.CSSProperties;
@@ -16,8 +16,8 @@ const EpiloguePost = (props: propsType) => {
                 <Thumbnail
                     src={props.thumbnail ? props.thumbnail : defaultImg}
                 ></Thumbnail>
-                <Title>{props.title}</Title>
-                <Author>{props.author}</Author>
+                <text className="title">{props.title}</text>
+                <text className="author">{props.author}</text>
             </PostInfo>
         </Container>
     );

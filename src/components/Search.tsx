@@ -5,7 +5,7 @@ const Search = () => {
     return (
         <Container>
             <SearchBox>
-                <Img src={search}></Img>
+                <img src={search}></img>
                 <Input placeholder="모금글, 구조자를 검색하세요"></Input>
             </SearchBox>
         </Container>
@@ -18,6 +18,11 @@ const Container = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-end;
+
+    img {
+        height: 27px;
+        width: 24px;
+    }
 `;
 const SearchBox = styled.div`
     display: flex;
@@ -30,10 +35,6 @@ const SearchBox = styled.div`
     border-radius: 2px;
     width: 450px;
     height: 38px;
-`;
-const Img = styled.img`
-    height: 27px;
-    width: 24px;
 `;
 const Input = styled.input`
     width: 100%;

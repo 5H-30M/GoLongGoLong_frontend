@@ -92,15 +92,15 @@ const Slider = () => {
         <Container>
             <Slide x={x} transition={trans}>
                 <Link to="/epilogue">
-                    <Img src={afterstory}></Img>
+                    <img src={afterstory}></img>
                 </Link>
-                <Img src={blockchain}></Img>
-                <Img src={urgentcats}></Img>
-                <Img src={catinmytown}></Img>
+                <img src={blockchain}></img>
+                <img src={urgentcats}></img>
+                <img src={catinmytown}></img>
                 <Link to="/epilogue">
-                    <Img src={afterstory}></Img>
+                    <img src={afterstory}></img>
                 </Link>
-                <Img src={blockchain}></Img>
+                <img src={blockchain}></img>
             </Slide>
             <Before onClick={onClickBefore}>
                 <Chevron src={leftChevron}></Chevron>
@@ -125,10 +125,11 @@ const Slide = styled.div<{ x: number; transition: boolean }>`
     flex-direction: row;
     transform: translate(${(props) => props.x}vw);
     transition: ${(props) => (props.transition ? "transform 1s " : "")};
-`;
-const Img = styled.img`
-    width: 100vw;
-    object-fit: cover;
+
+    img {
+        width: 100vw;
+        object-fit: cover;
+    }
 `;
 const Chevron = styled.img`
     width: 9px;

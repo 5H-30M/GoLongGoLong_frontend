@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import defaultImg from "../assets/imgs/default.png";
-import { Container, PostInfo, Thumbnail, Title, Author } from "./styles/Board";
+import { Container, PostInfo, Thumbnail } from "./styles/Board";
 
 interface propsType {
     thumbnail: React.CSSProperties;
@@ -15,15 +15,15 @@ const Post = (props: propsType) => {
                 <Thumbnail
                     src={props.thumbnail ? props.thumbnail : defaultImg}
                 ></Thumbnail>
-                <Title>{props.title}</Title>
-                <Author>{props.author}</Author>
+                <text className="title">{props.title}</text>
+                <text className="author">{props.author}</text>
             </PostInfo>
             <FundStatus>
                 <Left>
-                    <Percent>76%</Percent>
-                    <TotalAmout>684,500원</TotalAmout>
+                    <text className="percent">76%</text>
+                    <text className="totalAmount">684,500원</text>
                 </Left>
-                <LeftDays>10일</LeftDays>
+                <text className="leftDays">10일</text>
             </FundStatus>
         </Container>
     );
@@ -36,22 +36,24 @@ const FundStatus = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    /* text */
+    .percent {
+        font-size: 15px;
+        color: #f1b95c;
+        font-weight: bold;
+    }
+    .totalAmount {
+        font-size: 14px;
+    }
+    .leftDays {
+        font-size: 14px;
+        color: #6d6d6d;
+    }
 `;
 const Left = styled.div`
     display: flex;
     flex-direction: row;
     gap: 10px;
     align-items: center;
-`;
-const Percent = styled.text`
-    font-size: 15px;
-    color: #f1b95c;
-    font-weight: bold;
-`;
-const TotalAmout = styled.text`
-    font-size: 14px;
-`;
-const LeftDays = styled.text`
-    font-size: 14px;
-    color: #6d6d6d;
 `;
