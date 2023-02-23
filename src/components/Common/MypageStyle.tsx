@@ -9,12 +9,12 @@ const Container = styled.div`
     width: 1040px;
     display: flex;
     flex-direction: column;
-    gap: 60px;
-    margin-top: 50px;
+    gap: 45px;
 
     /* text */
     .title {
         font-size: 35px;
+        margin: 50px 0;
     }
     .number {
         color: #f1b95c;
