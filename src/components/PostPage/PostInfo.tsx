@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import thumbnail from "../../assets/imgs/test/1.jpg";
+import { GreyButton } from "components/Common/ButtonStyle";
 
 const PostInfo = () => {
     return (
@@ -38,7 +39,7 @@ const PostInfo = () => {
                             모금기간 2022.06.29 ~ 2022.07.27
                         </text>
                     </RowDiv>
-                    <DonateButton>기부하기</DonateButton>
+                    <GreyButton>기부하기</GreyButton>
                 </Right>
             </Div>
         </Container>
@@ -101,11 +102,4 @@ const Line = styled.div`
     width: 340px;
     height: 1px;
     background: #f4f4f4;
-`;
-const DonateButton = styled.button`
-    width: 353px;
-    height: 40px;
-    background: #f1f3f5;
-    border: none;
-    border-radius: 5px;
 `;

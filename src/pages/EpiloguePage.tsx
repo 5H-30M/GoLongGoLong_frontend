@@ -1,7 +1,8 @@
-import EpiloguePost from "components/EpiloguePost";
-import Search from "components/Search";
+import EpiloguePost from "components/EpiloguePage/Post";
+import Search from "components/Common/Search";
 import styled from "styled-components";
 import epilogue from "../assets/imgs/banners/epilogue.png";
+import { Link } from "react-router-dom";
 /* 테스트용 이미지*/
 import img1 from "../assets/imgs/test/1.jpg";
 import img2 from "../assets/imgs/test/2.jpg";
@@ -19,11 +20,16 @@ const Epilogue = () => {
             <InnerContainer>
                 <Search />
                 <Board>
-                    <EpiloguePost
-                        thumbnail={img1}
-                        title={"다리를 다친 뚜비를 도와주세요"}
-                        author={"카라카라케리"}
-                    />
+                    <Link
+                        to="/epilogue/post"
+                        style={{ color: "black", textDecoration: "none" }}
+                    >
+                        <EpiloguePost
+                            thumbnail={img1}
+                            title={"다리를 다친 뚜비를 도와주세요"}
+                            author={"카라카라케리"}
+                        />
+                    </Link>
                     <EpiloguePost
                         thumbnail={img2}
                         title={"사랑이에게 사랑을 베풀어 주세요"}

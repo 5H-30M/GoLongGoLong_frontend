@@ -2,12 +2,13 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 /* components */
-import Footer from "components/Footer";
-import Header from "components/Header";
+import Footer from "components/Common/Footer";
+import Header from "components/Common/Header";
 import EpiloguePage from "pages/EpiloguePage";
 import LoginPage from "pages/LoginPage";
 import MainAfterLoginPage from "pages/MainAfterLoginPage";
 import PostPage from "pages/PostPage";
+import EpiloguePostPage from "pages/EpiloguePostPage";
 
 function App() {
     return (
@@ -20,6 +21,10 @@ function App() {
                     <Route path="/login" element={<LoginPage />}></Route>
                     <Route path="/epilogue" element={<EpiloguePage />}></Route>
                     <Route path="/post" element={<PostPage />}></Route>
+                    <Route
+                        path="/epilogue/post"
+                        element={<EpiloguePostPage />}
+                    ></Route>
                 </Routes>
                 <Footer />
             </Router>
