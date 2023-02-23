@@ -1,4 +1,5 @@
 import {
+    Wrapper,
     Container,
     GreyDiv,
     ColumnDiv,
@@ -51,9 +52,3 @@ const MyDonationPage = () => {
 };
 
 export default MyDonationPage;
-
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;

@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
 const Container = styled.div`
     width: 1040px;
     display: flex;
@@ -50,9 +55,11 @@ const GreyDiv = styled.div`
     }
 `;
 const ColumnDiv = styled.div`
+    height: 134px;
     display: flex;
     flex-direction: column;
     gap: 13px;
+    padding: 10px 0;
 `;
 const RowDiv = styled.div`
     width: 100%;
@@ -60,4 +67,4 @@ const RowDiv = styled.div`
     flex-direction: row;
 `;
 
-export { Container, GreyDiv, ColumnDiv, RowDiv };
+export { Wrapper, Container, GreyDiv, ColumnDiv, RowDiv };

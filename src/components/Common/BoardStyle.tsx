@@ -4,8 +4,6 @@ const Container = styled.div`
     width: 236px;
     display: flex;
     flex-direction: column;
-    border-bottom: 4px solid #d0d0d0;
-    padding-bottom: 15px;
     margin: 25px 0px;
     gap: 26px;
 
