@@ -9,6 +9,7 @@ import LoginPage from "pages/LoginPage";
 import MainAfterLoginPage from "pages/MainAfterLoginPage";
 import PostPage from "pages/PostPage";
 import EpiloguePostPage from "pages/EpiloguePostPage";
+import MyDonationPage from "pages/MyDonationPage";
 
 function App() {
     return (
@@ -24,6 +25,11 @@ function App() {
                     <Route
                         path="/epilogue/post"
                         element={<EpiloguePostPage />}
+                    ></Route>
+                    /* mypage */
+                    <Route
+                        path="/my/donation"
+                        element={<MyDonationPage />}
                     ></Route>
                 </Routes>
                 <Footer />
