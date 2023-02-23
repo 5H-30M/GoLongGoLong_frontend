@@ -10,6 +10,7 @@ import MainAfterLoginPage from "pages/MainAfterLoginPage";
 import PostPage from "pages/PostPage";
 import EpiloguePostPage from "pages/EpiloguePostPage";
 import MyDonationPage from "pages/MyDonationPage";
+import MyInterestPage from "pages/MyInterestPage";
 
 function App() {
     return (
@@ -25,12 +26,10 @@ function App() {
                     <Route
                         path="/epilogue/post"
                         element={<EpiloguePostPage />}
-                    ></Route>
+                    />
                     /* mypage */
-                    <Route
-                        path="/my/donation"
-                        element={<MyDonationPage />}
-                    ></Route>
+                    <Route path="/my/donation" element={<MyDonationPage />} />
+                    <Route path="/my/interest" element={<MyInterestPage />} />
                 </Routes>
                 <Footer />
             </Router>
