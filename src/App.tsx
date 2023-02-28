@@ -11,6 +11,7 @@ import PostPage from "pages/PostPage";
 import EpiloguePostPage from "pages/EpiloguePostPage";
 import MyDonationPage from "pages/MyDonationPage";
 import MyInterestPage from "pages/MyInterestPage";
+import MyNotificationPage from "pages/MyNotificationPage";
 
 function App() {
     return (
@@ -30,6 +31,10 @@ function App() {
                     /* mypage */
                     <Route path="/my/donation" element={<MyDonationPage />} />
                     <Route path="/my/interest" element={<MyInterestPage />} />
+                    <Route
+                        path="/my/notification"
+                        element={<MyNotificationPage />}
+                    />
                 </Routes>
                 <Footer />
             </Router>
