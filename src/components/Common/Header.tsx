@@ -13,14 +13,14 @@ const Header = () => {
             isLogin
                 ? result.push(
                       <Right>
-                          <Link to="/interest">
+                          <Link to="/my/interest">
                               <img src={interest} className="menu" />
                           </Link>
-                          <Link to="/notice">
+                          <Link to="/my/notification">
                               <img src={notice} className="menu" />
                           </Link>
                           <Link
-                              to="/mydonation"
+                              to="/my/donation"
                               style={{ color: "black", textDecoration: "none" }}
                           >
                               <text className="menu">기부 현황</text>
