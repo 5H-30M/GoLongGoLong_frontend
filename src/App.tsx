@@ -2,16 +2,17 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 /* components */
-import Footer from "components/Common/Footer";
-import Header from "components/Common/Header";
-import EpiloguePage from "pages/EpiloguePage";
-import LoginPage from "pages/LoginPage";
-import MainAfterLoginPage from "pages/MainAfterLoginPage";
-import PostPage from "pages/PostPage";
-import EpiloguePostPage from "pages/EpiloguePostPage";
-import MyDonationPage from "pages/MyDonationPage";
-import MyInterestPage from "pages/MyInterestPage";
-import MyNotificationPage from "pages/MyNotificationPage";
+import Footer from "components/Footer";
+import Header from "components/Header/Header";
+import EpiloguePage from "pages/Epilogue/Epilogue";
+import LoginPage from "pages/Login";
+import MainAfterLoginPage from "pages/MainAfterLogin/MainAfterLogin";
+import PostPage from "pages/DonationPost/DonationPost";
+import EpiloguePostPage from "pages/EpiloguePost/EpiloguePost";
+import MyDonationPage from "pages/MyDonation/MyDonation";
+import MyInterestPage from "pages/MyInterest/MyInterest";
+import MyNotificationPage from "pages/MyNotification/MyNotification";
+import EpiloguePost from "pages/EpiloguePost/EpiloguePost";
 
 function App() {
     return (
@@ -24,6 +25,10 @@ function App() {
                     <Route path="/login" element={<LoginPage />}></Route>
                     <Route path="/epilogue" element={<EpiloguePage />}></Route>
                     <Route path="/post" element={<PostPage />}></Route>
+                    <Route
+                        path="/epilogue/post"
+                        element={<EpiloguePost />}
+                    ></Route>
                     <Route
                         path="/epilogue/post"
                         element={<EpiloguePostPage />}

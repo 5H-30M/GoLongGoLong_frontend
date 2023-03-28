@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
-const GreyButton = styled.button`
+const StyledButton = styled.button`
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+`;
+
+const GreyButton = styled(StyledButton)`
     width: 353px;
     height: 40px;
     background: #f1f3f5;
-    border: none;
     border-radius: 5px;
 `;
 
-export { GreyButton };
+export { StyledButton, GreyButton };
