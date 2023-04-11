@@ -1,17 +1,20 @@
 import FundStatus from "components/FundStatus/FundStatus";
 import { Card } from "./Card/Card";
+import { postType } from "redux/postSlice";
 
-interface propsType {
-    thumbnail: React.CSSProperties;
-    title: string;
-    author: string;
-}
-
-const DonationCard = ({ thumbnail, title, author }: propsType) => {
+const DonationCard = ({ post }: postType) => {
     return (
         <Card.Container>
-            <Card thumbnail={thumbnail} title={title} author={author} />
-            <FundStatus />
+            <Card
+                thumbnail={post.images[0]}
+                title={post.title}
+                author={post.uploader_id}
+            />
+            <FundStatus
+                targetAmount={post.target_amount}
+                createdAt={post.created_at}
+                period={post.period}
+            />
         </Card.Container>
     );
 };

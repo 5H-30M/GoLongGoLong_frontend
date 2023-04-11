@@ -2,53 +2,58 @@ import { Container, Cards } from "./Style";
 import DonationCard from "components/DonationCard";
 import EpilogueCard from "components/EpilogueCard";
 import { Link } from "react-router-dom";
-/* 테스트용 이미지*/
-import img1 from "../../assets/imgs/test/1.jpg";
+import { useAppSelector } from "hooks/useAppSelector";
+import { postType } from "redux/postSlice";
 
 interface propsType {
     kindOfCard: string;
 }
 
 const Board = ({ kindOfCard }: propsType): any => {
+    //리덕스 store에서 post 정보를 가져온다.
+    const posts: postType["post"][] = useAppSelector((state) =>
+        kindOfCard == "donation"
+            ? state.post.donationPost
+            : state.post.epiloguePost
+    );
+    const isLoading = useAppSelector((state) => state.post.isLoading);
+
     const renderCard = () => {
         //kindOfCard props가 "donation"일 경우 <DonationsCard> 컴포넌트를, 아닐 경우 <EpilogueCard> 컴포넌트를 렌더한다.
         const result: any[] = [];
-
-        if (kindOfCard == "donation") {
-            result.push(
-                <Link
-                    to="/post"
-                    style={{ color: "black", textDecoration: "none" }}
-                >
-                    <DonationCard
-                        thumbnail={img1}
-                        title={"다리를 다친 뚜비를 도와주세요"}
-                        author={"카라카라케리"}
-                    />
-                </Link>
-            );
-        }
-        if (kindOfCard == "epilogue") {
-            result.push(
-                <Link
-                    to="/epilogue/post"
-                    style={{ color: "black", textDecoration: "none" }}
-                >
-                    <EpilogueCard
-                        thumbnail={img1}
-                        title={"다리를 다친 뚜비를 도와주세요"}
-                        author={"카라카라케리"}
-                    />
-                </Link>
-            );
-        }
-
+        result.push(
+            posts.map((item, index) => {
+                if (kindOfCard == "donation") {
+                    return (
+                        <Link
+                            to={`/post/${item.post_id}`}
+                            style={{ color: "black", textDecoration: "none" }}
+                        >
+                            <DonationCard post={item} />
+                        </Link>
+                    );
+                }
+                if (kindOfCard == "epilogue") {
+                    return (
+                        <Link
+                            to={`/epilogue/post/${item.post_id}`}
+                            style={{ color: "black", textDecoration: "none" }}
+                        >
+                            <EpilogueCard post={item} />
+                        </Link>
+                    );
+                }
+            })
+        );
         return result;
     };
 
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
     return (
         <Container>
-            <Cards>{renderCard()}</Cards>
+            <Cards>{posts ? renderCard() : ""}</Cards>
         </Container>
     );
 };

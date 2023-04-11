@@ -12,7 +12,6 @@ const Author = () => {
                     <text className="medium">냥냥아</text>
                 </Column>
             </Row>
-            <text className="small">모금기간 : 2022.06.29 ~ 2022.07.27</text>
         </Container>
     );
 };

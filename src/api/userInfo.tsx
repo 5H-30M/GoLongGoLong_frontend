@@ -14,15 +14,14 @@ const RegisterInfoApi = () => {
         });
 };
 
-const ViewInfoApi = () => {
-    axios
-        .get("/users/my/info")
-        .then((res) => {
-            return res.data;
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+const ViewInfoApi = async () => {
+    try {
+        let res = await axios.get("/users/my/info");
+        return res.data;
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
 };
 
 const UpdateInfoApi = () => {
