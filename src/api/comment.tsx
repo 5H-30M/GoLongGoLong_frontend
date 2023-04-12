@@ -1,36 +1,30 @@
 import axios from "axios";
 
-const WriteApi = (
-    writerId: string,
-    content: string,
-    createdAt: string,
-    postId: number,
-    commentId: number
-) => {
-    let body = {
-        writerId: writerId,
-        content: content,
-        createdAt: createdAt,
+interface commentType {
+    comment: {
+        comment_id: number;
+        content: string;
+        created_at: string;
+        review_id: number;
+        writer_id: number;
     };
-    axios
-        .post(`board/${postId}/comment/${commentId}`, body)
-        .then(() => {
-            alert("댓글이 작성되었습니다.");
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+}
+
+export const WriteApi = async ({ comment }: commentType) => {
+    try {
+        await axios.post(`board/comment/`, comment);
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
 };
 
-const DeleteApi = (postId: number, commentId: number) => {
-    axios
-        .delete(`board/${postId}/comment/${commentId}`)
-        .then(() => {
-            alert("댓글이 삭제되었습니다.");
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+export const DeleteApi = async (commentId: number) => {
+    try {
+        await axios.delete(`board/comment/${commentId}`);
+        alert("댓글이 삭제되었습니다.");
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
 };
-
-export { WriteApi, DeleteApi };

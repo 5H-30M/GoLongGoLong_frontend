@@ -1,81 +1,52 @@
 import axios from "axios";
+import { postType } from "redux/postSlice";
 
-const ViewAllApi = () => {
-    axios
-        .get("/board")
-        .then((res) => {
-            return res.data;
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+export const ViewAllApi = async () => {
+    try {
+        let res = await axios.get("/board");
+        return res.data;
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
 };
 
-const WriteApi = (
-    title: string,
-    content: string,
-    id: string,
-    date: string,
-    period: string
-) => {
-    let body = {
-        title: title,
-        content: content,
-        id: id,
-        date: date,
-        period: period,
-    };
-    axios
-        .post("/board", body)
-        .then(() => {
-            alert("글이 작성되었습니다.");
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+export const WriteApi = async ({ post }: postType) => {
+    try {
+        await axios.post("/board", post);
+        alert("글이 작성되었습니다.");
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
 };
 
-const ViewApi = (postId: number) => {
-    axios
-        .get(`/board/${postId}`)
-        .then((res) => {
-            res.data;
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+export const ViewApi = async (postId: number) => {
+    try {
+        let res = await axios.get(`/board/${postId}`);
+        return res.data;
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
 };
 
-const UpdateApi = (
-    title: string,
-    content: string,
-    id: string,
-    date: string,
-    period: string,
-    postId: number
-) => {
-    let body = {
-        title: title,
-        content: content,
-        id: id,
-        date: date,
-        period: period,
-    };
-    axios
-        .put(`/board/${postId}`, body)
-        .then(() => {
-            alert("글이 수정되었습니다.");
-        })
-        .catch((err) => console.log(err));
+export const UpdateApi = async ({ post }: postType, postId: number) => {
+    try {
+        await axios.put(`/board/${postId}`, post);
+        alert("글이 수정되었습니다.");
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
 };
 
-const DeleteApi = (postId: number) => {
-    axios
-        .delete(`/board/${postId}`)
-        .then(() => {
-            alert("글이 삭제되었습니다.");
-        })
-        .catch((err) => console.log(err));
+export const DeleteApi = async (postId: number) => {
+    try {
+        await axios.delete(`/board/${postId}`);
+        alert("글이 삭제되었습니다.");
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
 };
-
-export { ViewAllApi, WriteApi, ViewApi, UpdateApi, DeleteApi };

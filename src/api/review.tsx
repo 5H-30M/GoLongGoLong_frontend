@@ -1,53 +1,55 @@
 import axios from "axios";
+import { epilPostType } from "redux/postSlice";
 
-const ViewApi = () => {
-    axios
-        .get("/review")
-        .then((res) => {
-            return res.data;
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+export const ViewAllApi = async () => {
+    try {
+        let res = await axios.get("/review");
+        return res.data;
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
 };
 
-const WriteApi = () => {
-    let body = {
-        // 모금 후기 게시글
-    };
-    axios
-        .post("/review", body)
-        .then(() => {
-            alert("글이 작성되었습니다.");
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+export const ViewApi = async (reviewId: number) => {
+    try {
+        let res = await axios.get(`/review/${reviewId}`);
+        return res.data;
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
 };
 
-const UpdateApi = (reviewId: number) => {
-    let body = {
-        // 수정 내용
-    };
-    axios
-        .put(`/review/${reviewId}`)
-        .then(() => {
-            alert("글이 수정되었습니다.");
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+export const WriteApi = async ({ epilpost }: epilPostType) => {
+    try {
+        await axios.post("/review", epilpost);
+        alert("글이 작성되었습니다.");
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
 };
 
-const DeleteApi = (reviewId: number) => {
-    axios
-        .delete(`/review/${reviewId}`)
-        .then(() => {
-            alert("글이 삭제되었습니다.");
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+export const UpdateApi = async (
+    { epilpost }: epilPostType,
+    reviewId: number
+) => {
+    try {
+        await axios.put(`/review/${reviewId}`, epilpost);
+        alert("글이 수정되었습니다.");
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
 };
 
-export { WriteApi, UpdateApi, DeleteApi, ViewApi };
+export const DeleteApi = async (reviewId: number) => {
+    try {
+        await axios.delete(`/review/${reviewId}`);
+        alert("글이 삭제되었습니다.");
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
+};
