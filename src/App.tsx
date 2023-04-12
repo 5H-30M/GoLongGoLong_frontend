@@ -13,13 +13,14 @@ import MyDonationPage from "pages/MyDonation/MyDonation";
 import MyInterestPage from "pages/MyInterest/MyInterest";
 import MyNotificationPage from "pages/MyNotification/MyNotification";
 import EpiloguePost from "pages/EpiloguePost/EpiloguePost";
-import { fetchDonaPosts } from "redux/postSlice";
+import { fetchDonaPosts, fetchEpilPosts } from "redux/postSlice";
 
 function App() {
     //api를 통해 post 정보를 가져와 리덕스에 저장
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(fetchDonaPosts());
+        dispatch(fetchEpilPosts());
     }, [dispatch]);
 
     return (
@@ -33,16 +34,10 @@ function App() {
                     <Route path="/epilogue" element={<EpiloguePage />}></Route>
                     <Route path="/post/:id" element={<PostPage />}></Route>
                     <Route
-                        path="/epilogue/post"
-                        element={<EpiloguePost />}
-                    ></Route>
-                    /*
-                    <Route path="/post" element={<PostPage />}></Route>
-                    <Route
                         path="/epilogue/post/:id"
                         element={<EpiloguePost />}
                     ></Route>
-                    */ /* mypage */
+                    /* mypage */
                     <Route path="/my/donation" element={<MyDonationPage />} />
                     <Route path="/my/interest" element={<MyInterestPage />} />
                     <Route

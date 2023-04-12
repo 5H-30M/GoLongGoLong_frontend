@@ -1,9 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ViewAllApi } from "api/post";
+import * as postApi from "api/post";
+import * as reviewApi from "api/review";
 
 export const fetchDonaPosts = createAsyncThunk(
     "postSlice/fetchDonaPosts",
-    ViewAllApi
+    postApi.ViewAllApi
+);
+export const fetchEpilPosts = createAsyncThunk(
+    "postSlice/fetchEpilPosts",
+    reviewApi.ViewAllApi
 );
 
 export const postSlice = createSlice({
@@ -40,6 +45,19 @@ export const postSlice = createSlice({
                 if (action.error.message) {
                     state.error = action.error.message;
                 }
+            })
+            .addCase(fetchEpilPosts.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(fetchEpilPosts.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.epiloguePost = action.payload;
+            })
+            .addCase(fetchEpilPosts.rejected, (state, action) => {
+                state.isLoading = false;
+                if (action.error.message) {
+                    state.error = action.error.message;
+                }
             });
     },
 });
@@ -57,6 +75,28 @@ export interface postType {
         target_amount: number;
         title: string;
         uploader_id: number;
+    };
+}
+
+export interface epilPostType {
+    epilpost: {
+        amount: number;
+        comments: [
+            {
+                comment_id: number;
+                content: string;
+                created_at: string;
+                review_id: number;
+                writer_id: number;
+            }
+        ];
+        content: string;
+        createdAt: string;
+        id: number;
+        images: string[];
+        postId: number;
+        raisedPeople: number;
+        receipt: string;
     };
 }
 
