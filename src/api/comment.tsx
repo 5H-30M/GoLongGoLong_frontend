@@ -1,13 +1,22 @@
 import axios from "axios";
 
-interface commentType {
-    comment: {
+export interface commentType {
+    comment?: {
         comment_id: number;
         content: string;
         created_at: string;
         review_id: number;
         writer_id: number;
     };
+    comments?: [
+        {
+            comment_id: number;
+            content: string;
+            created_at: string;
+            review_id: number;
+            writer_id: number;
+        }
+    ];
 }
 
 export const WriteApi = async ({ comment }: commentType) => {

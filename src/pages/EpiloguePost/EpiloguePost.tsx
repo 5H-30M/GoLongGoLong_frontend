@@ -7,6 +7,7 @@ import * as reviewApi from "api/review";
 import { useEffect, useState } from "react";
 import { postType, epilPostType } from "redux/postSlice";
 import { useParams } from "react-router-dom";
+import CommentBox from "components/Comment/CommentBox";
 
 const EpiloguePost = () => {
     const epilpostId = useParams().id;
@@ -37,6 +38,7 @@ const EpiloguePost = () => {
                     <PostInfo post={post}></PostInfo>
                     <EpiloguePostContents epilpost={epilpost} />
                     <Author />
+                    <CommentBox comments={epilpost.comments} />
                 </Container>
             ) : (
                 ""
