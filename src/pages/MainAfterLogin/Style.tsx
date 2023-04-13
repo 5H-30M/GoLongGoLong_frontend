@@ -7,7 +7,7 @@ const Container = styled(Column)`
     gap: 50px;
 `;
 const InnerContainer = styled(Column)`
-    width: 1040px;
+    width: 67.7vw;
     gap: 30px;
 `;
 

@@ -13,7 +13,7 @@ const Banner = styled.img.attrs({
     width: 100vw;
 `;
 const InnerContainer = styled(Column)`
-    width: 1040px;
+    width: 67.7vw;
     gap: 30px;
 `;
 
