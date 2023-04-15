@@ -1,21 +1,22 @@
 import styled from "styled-components";
-import { Row } from "components/Common/DivStyle";
-import { StyledButton } from "components/Common/ButtonStyle";
+import { Column } from "components/Common/DivStyle";
 
-const Container = styled(Row)`
-    gap: 57px;
+const Container = styled(Column)`
+    width: 134px;
+    justify-content: center;
+    align-items: center;
 
-    text {
-        font-size: 20px;
-        color: #f1b95c;
-        font-weight: bold;
-    }
+    padding: 16px 0;
+    gap: 25px;
+
+    font-size: 19px;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    background-color: #ffffff;
+
+    position: absolute;
+    top: 40px;
+    left: 0;
 `;
-const Menu = styled(StyledButton)<{ border: string }>`
-    font-size: 20px;
-    padding: 5px;
 
-    border-bottom: ${(props) => props.border};
-`;
-
-export { Container, Menu };
+export { Container };
