@@ -19,7 +19,6 @@ const Interest = () => {
                     </text>
                     <text className="author">고양시캣맘</text>
                 </Column>
-                <FundStatus />
             </Column>
         </GreyDiv>
     );
