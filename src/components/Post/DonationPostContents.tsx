@@ -1,10 +1,14 @@
 import { Container, Line } from "../Common/PostStyle";
 import { postType } from "redux/postSlice";
 
-const DonationPostContents = ({ post }: postType) => {
+interface propsType {
+    post: postType;
+}
+
+const DonationPostContents = ({ post }: propsType) => {
     return (
         <Container>
-            <text>{post.content} </text>
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
             <Line></Line>
         </Container>
     );

@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import { Container, ThinLine, Line } from "components/Common/PostStyle";
-import img1 from "../../assets/imgs/test/5.jpg";
-import receipt from "../../assets/imgs/test/receipt.png";
 import { GreyButton } from "components/Common/ButtonStyle";
 import { epilPostType } from "redux/postSlice";
 
@@ -23,7 +21,7 @@ const EpiloguePostContents = ({ epilpost }: epilPostType) => {
 
     return (
         <Container>
-            <text>{epilpost.content}</text>
+            <div dangerouslySetInnerHTML={{ __html: epilpost.content }} />
             <ThinLine></ThinLine>
             <div id="confettiDiv">
                 <text className="title">모금 내역</text>
