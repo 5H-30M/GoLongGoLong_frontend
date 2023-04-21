@@ -2,18 +2,24 @@ import { Row } from "components/Common/DivStyle";
 import { Container } from "./Style";
 
 interface propsType {
+    totalAmount: number;
     targetAmount: number;
     createdAt: string;
     period: number;
 }
 
-const FundStatus = ({ targetAmount, createdAt, period }: propsType) => {
-    const totalAmount = 600000; //임시 데이터
-    const percent = ((totalAmount / targetAmount) * 100).toFixed(1); //toFixed(1) : 소수점 한자리 밑은 버린다.
-    const passDays =
+const FundStatus = ({
+    totalAmount,
+    targetAmount,
+    createdAt,
+    period,
+}: propsType) => {
+    const percent = ((totalAmount / targetAmount) * 100).toFixed(0); //toFixed(0) : 소수점은 버린다.
+    const passDays = Math.floor(
         (new Date().getTime() - new Date(createdAt).getTime()) /
-        (60 * 60 * 24 * 1000); //(현재날짜 - 글 게시날짜), 즉 글을 게시한 후로 며칠이 흘렀는가
-    const leftDays = Math.ceil(period - passDays); //올림하여 계산
+            (60 * 60 * 24 * 1000)
+    ); //(현재날짜 - 글 게시날짜), 즉 글을 게시한 후로 며칠이 흘렀는가
+    const leftDays = period - passDays; //올림하여 계산
 
     return (
         <Container>

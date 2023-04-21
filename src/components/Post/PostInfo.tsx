@@ -3,16 +3,22 @@ import { GreyButton } from "components/Common/ButtonStyle";
 import { Column, Row } from "components/Common/DivStyle";
 import { postType } from "redux/postSlice";
 
-const PostInfo = ({ post }: postType) => {
-    const totalAmount = 600000; //임시 데이터
-    const donators = 189;
+interface propsType {
+    post: postType;
+}
 
-    const percent = ((totalAmount / post.target_amount) * 100).toFixed(1);
+const PostInfo = ({ post }: propsType) => {
+    const totalAmount = post.amount != undefined ? post.amount : -1;
+    const donators = post.raised_people;
+    const createdAt = post.created_at ? post.created_at : "";
+    const percent = ((totalAmount / post.target_amount) * 100).toFixed(0);
     const passDays =
-        (new Date().getTime() - new Date(post.created_at).getTime()) /
+        (new Date(new Date().toLocaleString().substr(0, 11)).getTime() -
+            new Date(
+                new Date(createdAt).toLocaleString().substr(0, 11)
+            ).getTime()) /
         (60 * 60 * 24 * 1000);
-    const leftDays = Math.ceil(post.period - passDays);
-
+    const leftDays = post.period - passDays;
     const dateFormat = (date: Date) => {
         const formatted: string =
             date.getFullYear() +
@@ -23,18 +29,21 @@ const PostInfo = ({ post }: postType) => {
 
         return formatted;
     };
-
-    const createdAt = dateFormat(new Date(post.created_at));
+    const startDate = dateFormat(new Date(createdAt));
     const endDate = dateFormat(
         new Date(
-            new Date(post.created_at).getTime() +
-                (post.period - 1) * (60 * 60 * 24 * 1000)
+            new Date(createdAt).getTime() + post.period * (60 * 60 * 24 * 1000)
         )
     );
-
+    console.log(post);
     return (
         <Container>
-            <text className="title">{post.title}</text>
+            <text
+                className="title"
+                style={{ width: "100%", textAlign: "center" }}
+            >
+                {post.title}
+            </text>
             <Row style={{ gap: "60px" }}>
                 <img src={post.images[0]}></img>
                 <Right>
@@ -70,7 +79,7 @@ const PostInfo = ({ post }: postType) => {
                     </RowDiv>
                     <RowDiv>
                         <text className="small">
-                            모금기간 &nbsp; {createdAt} &nbsp; ~ &nbsp;{" "}
+                            모금기간 &nbsp; {startDate} &nbsp; ~ &nbsp;{" "}
                             {endDate}
                         </text>
                     </RowDiv>
