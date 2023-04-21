@@ -6,6 +6,7 @@ import { ViewApi } from "api/post";
 import { useEffect, useState } from "react";
 import { postType } from "redux/postSlice";
 import { useParams } from "react-router-dom";
+import Plans from "components/Post/Plans";
 
 const DonationPost = () => {
     const postId = useParams().id;
@@ -27,6 +28,7 @@ const DonationPost = () => {
                 <Container>
                     <PostInfo post={post}></PostInfo>
                     <DonationPostContents post={post} />
+                    <Plans post={post} />
                     <Author />
                 </Container>
             ) : (

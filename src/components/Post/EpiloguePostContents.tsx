@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Container, ThinLine, Line } from "components/Common/PostStyle";
+import { Container, ThinLine } from "components/Common/PostStyle";
 import { GreyButton } from "components/Common/ButtonStyle";
 import { epilPostType } from "redux/postSlice";
 
@@ -39,7 +39,6 @@ const EpiloguePostContents = ({ epilpost }: epilPostType) => {
             <text className="title">모금액 사용내역</text>
             <img src={epilpost.receipt}></img>
             {모금액사용내역()}
-            <Line></Line>
         </Container>
     );
 };
