@@ -6,19 +6,26 @@ const Container = styled.div`
     flex-direction: column;
     gap: 30px;
 
-    text {
-        font-size: 16px;
-        color: #444444;
-        line-height: 180%;
-    }
+    word-break: break-all;
+
+    line-height: 180%;
+    color: #444444;
+
     img {
         width: 100%;
         height: 390px;
-        object-fit: contain;
+        object-fit: cover;
     }
+    h1,
     .title {
         font-size: 30px;
         font-weight: bold;
+    }
+    h1,
+    h2,
+    p,
+    img {
+        padding: 10px 0;
     }
 `;
 const Line = styled.div`
