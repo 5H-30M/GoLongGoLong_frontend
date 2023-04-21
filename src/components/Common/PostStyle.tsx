@@ -32,7 +32,7 @@ const Line = styled.div`
     width: 100%;
     height: 6px;
     background-color: #444444;
-    margin-top: 100px;
+    margin-top: 50px;
 `;
 const ThinLine = styled.div`
     width: 100%;
