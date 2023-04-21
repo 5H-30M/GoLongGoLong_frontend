@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 
 const DonationPost = () => {
     const postId = useParams().id;
-    const [post, setPost] = useState<postType["post"]>();
+    const [post, setPost] = useState<postType>();
 
     useEffect(() => {
         //uri의 postId를 이용해, post 정보를 가져온다.

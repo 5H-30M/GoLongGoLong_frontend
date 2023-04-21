@@ -12,7 +12,7 @@ import CommentBox from "components/Comment/CommentBox";
 const EpiloguePost = () => {
     const epilpostId = useParams().id;
     const [epilpost, setEpilpost] = useState<epilPostType["epilpost"]>();
-    const [post, setPost] = useState<postType["post"]>();
+    const [post, setPost] = useState<postType>();
 
     useEffect(() => {
         //uri의 epilpostId 이용해, post 정보를 가져온다.

@@ -5,7 +5,7 @@ import { ViewApi } from "api/post";
 
 const EpilogueCard = ({ epilpost }: epilPostType) => {
     //postId를 통해 post의 정보를 가져온다.
-    const [post, setPost] = useState<postType["post"]>();
+    const [post, setPost] = useState<postType>();
 
     useEffect(() => {
         const getPost = async () => {

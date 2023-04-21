@@ -11,7 +11,7 @@ interface propsType {
 
 const Board = ({ kindOfCard }: propsType): any => {
     //리덕스 store에서 post 정보를 가져온다.
-    const donaPosts: postType["post"][] = useAppSelector(
+    const donaPosts: postType[] = useAppSelector(
         (state) => state.post.donationPost
     );
     const epilPosts: epilPostType["epilpost"][] = useAppSelector(
@@ -40,6 +40,7 @@ const Board = ({ kindOfCard }: propsType): any => {
                 epilPosts.map((item, index) => {
                     return (
                         <Link
+                            key={index}
                             to={`/epilogue/post/${item.id}`}
                             style={{ color: "black", textDecoration: "none" }}
                         >

@@ -63,19 +63,19 @@ export const postSlice = createSlice({
 });
 
 export interface postType {
-    post: {
-        content: string;
-        created_at: string;
-        postId: string;
-        images: string[];
-        period: number;
-        post_id: number;
-        region: string;
-        status: number;
-        target_amount: number;
-        title: string;
-        uploader_id: number;
-    };
+    amount?: number;
+    content: string;
+    created_at?: string;
+    images: string[];
+    period: number;
+    plans: object;
+    post_id?: number;
+    raised_people?: number;
+    region?: string;
+    status?: number;
+    target_amount: number;
+    title: string;
+    uploader_id: number;
 }
 
 export interface epilPostType {

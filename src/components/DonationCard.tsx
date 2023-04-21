@@ -2,7 +2,14 @@ import FundStatus from "components/FundStatus/FundStatus";
 import { Card } from "./Card/Card";
 import { postType } from "redux/postSlice";
 
-const DonationCard = ({ post }: postType) => {
+interface propsType {
+    post: postType;
+}
+
+const DonationCard = ({ post }: propsType) => {
+    const createdAt = post.created_at ? post.created_at : "";
+    const totalAmount = post.amount != undefined ? post.amount : -1;
+
     return (
         <Card.Container>
             <Card
@@ -11,8 +18,9 @@ const DonationCard = ({ post }: postType) => {
                 author={post.uploader_id}
             />
             <FundStatus
+                totalAmount={totalAmount}
                 targetAmount={post.target_amount}
-                createdAt={post.created_at}
+                createdAt={createdAt}
                 period={post.period}
             />
         </Card.Container>
