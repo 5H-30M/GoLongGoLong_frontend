@@ -25,7 +25,7 @@ const UploadImage = async ({ img }: propsType) => {
                     ACL: "public-read",
                 })
                 .promise();
-            return result.Location; //업로드한 이미지의 URL을 리턴한다.
+            return decodeURIComponent(result.Location); //업로드한 이미지의 URL을 리턴한다. 한글이 깨질 수 있어, utf-8 디코딩을 사용한다.
         } catch (error) {
             console.error("Error uploading file: ", error);
             return "https://github.com/5H-30M/GoLongGoLong_frontend/blob/main/src/assets/imgs/default.png?raw=true";
