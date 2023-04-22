@@ -1,5 +1,5 @@
 import axios from "axios";
-import { epilPostType } from "redux/postSlice";
+import { epilPostType } from "utils/types";
 
 interface propsType {
     epilpost?: epilPostType;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { postType } from "redux/postSlice";
+import { postType } from "utils/types";
 
 interface propsType {
     post?: postType;

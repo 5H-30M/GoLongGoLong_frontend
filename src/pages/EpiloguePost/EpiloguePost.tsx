@@ -5,7 +5,7 @@ import { Container } from "./Style";
 import * as postApi from "api/post";
 import * as reviewApi from "api/review";
 import { useEffect, useState } from "react";
-import { postType, epilPostType } from "redux/postSlice";
+import { postType, epilPostType } from "utils/types";
 import { useParams } from "react-router-dom";
 import CommentBox from "components/Comment/CommentBox";
 

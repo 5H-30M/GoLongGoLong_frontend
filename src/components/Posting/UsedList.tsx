@@ -4,8 +4,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { GreyButton } from "components/Common/ButtonStyle";
 import add from "../../assets/imgs/add.png";
 import ListInput from "./ListInput";
-import { epilPostType } from "redux/postSlice";
-import UploadImage from "S3";
+import { epilPostType } from "utils/types";
+import UploadImage from "utils/S3";
 import { Column, Row } from "components/Common/DivStyle";
 import defaultImg from "../../assets/imgs/default.png";
 

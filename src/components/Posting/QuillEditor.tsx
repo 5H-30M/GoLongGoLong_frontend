@@ -1,7 +1,7 @@
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import { useMemo, useRef } from "react";
-import UploadImage from "S3";
+import UploadImage from "utils/S3";
 
 interface propsType {
     setContents: React.Dispatch<React.SetStateAction<string>>;

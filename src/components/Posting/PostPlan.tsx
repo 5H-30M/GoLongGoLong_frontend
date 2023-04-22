@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { GreyButton } from "components/Common/ButtonStyle";
 import add from "../../assets/imgs/add.png";
 import ListInput from "./ListInput";
-import { postType } from "redux/postSlice";
+import { postType } from "utils/types";
 
 interface propsType {
     data: postType;

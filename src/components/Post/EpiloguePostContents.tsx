@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Container, ThinLine } from "components/Common/PostStyle";
 import { GreyButton } from "components/Common/ButtonStyle";
-import { epilPostType, postType } from "redux/postSlice";
+import { postType, epilPostType } from "utils/types";
 
 interface propsType {
     post: postType;

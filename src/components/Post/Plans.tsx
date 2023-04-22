@@ -1,6 +1,6 @@
 import { Container, ThinLine, Line } from "components/Common/PostStyle";
 import { Row } from "components/Common/DivStyle";
-import { postType } from "redux/postSlice";
+import { postType } from "utils/types";
 
 interface propsType {
     post: postType;

@@ -1,4 +1,4 @@
-import { epilPostType, postType } from "redux/postSlice";
+import { postType, epilPostType } from "utils/types";
 import { Card } from "./Card/Card";
 import { useState, useEffect } from "react";
 import { ViewApi } from "api/post";

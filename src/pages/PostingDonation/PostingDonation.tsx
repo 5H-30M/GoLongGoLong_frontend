@@ -2,7 +2,7 @@ import PostContents from "components/Posting/PostContents";
 import { Container } from "./Style";
 import PostInfo from "components/Posting/PostInfo";
 import { useState } from "react";
-import { postType } from "redux/postSlice";
+import { postType } from "utils/types";
 import { GreyButton } from "components/Common/ButtonStyle";
 import { Row } from "components/Common/DivStyle";
 import PostPlan from "components/Posting/PostPlan";

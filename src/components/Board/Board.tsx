@@ -3,7 +3,7 @@ import DonationCard from "components/DonationCard";
 import EpilogueCard from "components/EpilogueCard";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "hooks/useAppSelector";
-import { epilPostType, postType } from "redux/postSlice";
+import { postType, epilPostType } from "utils/types";
 
 interface propsType {
     kindOfCard: string;

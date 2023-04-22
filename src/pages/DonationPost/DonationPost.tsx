@@ -4,7 +4,7 @@ import PostInfo from "components/Post/PostInfo";
 import { Container } from "./Style";
 import { ViewApi } from "api/post";
 import { useEffect, useState } from "react";
-import { postType } from "redux/postSlice";
+import { postType } from "utils/types";
 import { useParams } from "react-router-dom";
 import Plans from "components/Post/Plans";
 

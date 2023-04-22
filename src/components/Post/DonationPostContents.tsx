@@ -1,5 +1,5 @@
 import { Container } from "../Common/PostStyle";
-import { postType } from "redux/postSlice";
+import { postType } from "utils/types";
 
 interface propsType {
     post: postType;

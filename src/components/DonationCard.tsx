@@ -1,6 +1,6 @@
 import FundStatus from "components/FundStatus/FundStatus";
 import { Card } from "./Card/Card";
-import { postType } from "redux/postSlice";
+import { postType } from "utils/types";
 
 interface propsType {
     post: postType;

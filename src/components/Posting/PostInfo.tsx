@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { GreyButton } from "components/Common/ButtonStyle";
 import { Column, Row } from "components/Common/DivStyle";
-import { postType } from "redux/postSlice";
+import { postType } from "utils/types";
 import React, { useRef, useState } from "react";
 import defaultImg from "../../assets/imgs/default.png";
-import UploadImage from "S3";
+import UploadImage from "utils/S3";
 
 interface propsType {
     data: postType;
