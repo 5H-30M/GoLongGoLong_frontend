@@ -14,6 +14,8 @@ import MyInterestPage from "pages/MyInterest/MyInterest";
 import MyNotificationPage from "pages/MyNotification/MyNotification";
 import EpiloguePost from "pages/EpiloguePost/EpiloguePost";
 import { fetchDonaPosts, fetchEpilPosts } from "redux/postSlice";
+import PostingDonation from "pages/PostingDonation/PostingDonation";
+import PostingEpilogue from "pages/PostingEpilogue/PostingEpilogue";
 
 function App() {
     //api를 통해 post 정보를 가져와 리덕스에 저장
@@ -43,6 +45,14 @@ function App() {
                     <Route
                         path="/my/notification"
                         element={<MyNotificationPage />}
+                    />
+                    <Route
+                        path="/posting/donation"
+                        element={<PostingDonation />}
+                    />
+                    <Route
+                        path="/posting/epilogue"
+                        element={<PostingEpilogue />}
                     />
                 </Routes>
                 <Footer />
