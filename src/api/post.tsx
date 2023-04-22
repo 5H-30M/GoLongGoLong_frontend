@@ -25,7 +25,7 @@ export const WriteApi = async ({ post }: propsType) => {
         if (err instanceof Error) console.log(err.message);
         else console.log(err);
         alert("오류가 발생했습니다. 다시 시도해 주세요.");
-        return true;
+        return false;
     }
 };
 
