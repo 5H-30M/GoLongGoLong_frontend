@@ -19,6 +19,7 @@ const PostContents = ({ data, setData }: propsType) => {
 
     return (
         <Container style={{ width: "70vw" }}>
+            <text className="title">에디터를 사용해 글을 작성하세요</text>
             <Row
                 style={{
                     width: "100%",

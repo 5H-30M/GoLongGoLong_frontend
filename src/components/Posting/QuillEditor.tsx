@@ -62,7 +62,6 @@ const QuillEditor = ({ setContents }: propsType) => {
                 ref={quillRef}
                 onChange={handleQuill}
                 modules={modules}
-                placeholder="더 많은 사람들이 모금에 참여할 수 있도록 모금이 필요한 상황에 대해 최대한 자세히 기술해 주세요"
             />
         </div>
     );
