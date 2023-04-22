@@ -79,25 +79,21 @@ export interface postType {
 }
 
 export interface epilPostType {
-    epilpost: {
-        amount: number;
-        comments: [
-            {
-                comment_id: number;
-                content: string;
-                created_at: string;
-                review_id: number;
-                writer_id: number;
-            }
-        ];
-        content: string;
-        createdAt: string;
-        id: number;
-        images: string[];
-        postId: number;
-        raisedPeople: number;
-        receipt: string;
-    };
+    comments?: [
+        {
+            comment_id: number;
+            content: string;
+            created_at: string;
+            review_id: number;
+            writer_id: number;
+        }
+    ];
+    content: string;
+    createdAt?: string;
+    id?: number;
+    postId: number;
+    receipt: string;
+    usedList: object;
 }
 
 export const { setDonaPost, setEpilPost, clearPostdata } = postSlice.actions;

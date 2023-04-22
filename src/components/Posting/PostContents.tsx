@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import QuillEditor from "./QuillEditor";
-import { postType } from "redux/postSlice";
 import { Container, ThinLine } from "components/Common/PostStyle";
 import { Row } from "components/Common/DivStyle";
 import styled from "styled-components";
 
 interface propsType {
-    data: postType;
-    setData: React.Dispatch<React.SetStateAction<postType>>;
+    data: object;
+    setData: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const PostContents = ({ data, setData }: propsType) => {

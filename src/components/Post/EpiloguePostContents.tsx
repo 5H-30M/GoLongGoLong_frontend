@@ -1,9 +1,14 @@
 import styled from "styled-components";
 import { Container, ThinLine } from "components/Common/PostStyle";
 import { GreyButton } from "components/Common/ButtonStyle";
-import { epilPostType } from "redux/postSlice";
+import { epilPostType, postType } from "redux/postSlice";
 
-const EpiloguePostContents = ({ epilpost }: epilPostType) => {
+interface propsType {
+    post: postType;
+    epilpost: epilPostType;
+}
+
+const EpiloguePostContents = ({ post, epilpost }: propsType) => {
     const 모금액사용내역 = () => {
         const result: any[] = [];
         result.push(
@@ -26,11 +31,11 @@ const EpiloguePostContents = ({ epilpost }: epilPostType) => {
             <div id="confettiDiv">
                 <text className="title">모금 내역</text>
                 <RowDiv>
-                    <text className="number">{epilpost.raisedPeople}</text>
+                    <text className="number">{post.raised_people}</text>
                     <text>명이 참여하여</text>
                 </RowDiv>
                 <RowDiv>
-                    <text className="number">{epilpost.amount}</text>
+                    <text className="number">{post.amount}</text>
                     <text>원이 모였습니다</text>
                 </RowDiv>
                 <GreyButton>자세한 모금 내역 바로가기</GreyButton>

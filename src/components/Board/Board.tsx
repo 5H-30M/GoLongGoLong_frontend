@@ -14,7 +14,7 @@ const Board = ({ kindOfCard }: propsType): any => {
     const donaPosts: postType[] = useAppSelector(
         (state) => state.post.donationPost
     );
-    const epilPosts: epilPostType["epilpost"][] = useAppSelector(
+    const epilPosts: epilPostType[] = useAppSelector(
         (state) => state.post.epiloguePost
     );
     const isLoading = useAppSelector((state) => state.post.isLoading);

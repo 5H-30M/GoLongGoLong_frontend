@@ -3,7 +3,11 @@ import { Card } from "./Card/Card";
 import { useState, useEffect } from "react";
 import { ViewApi } from "api/post";
 
-const EpilogueCard = ({ epilpost }: epilPostType) => {
+interface propsType {
+    epilpost: epilPostType;
+}
+
+const EpilogueCard = ({ epilpost }: propsType) => {
     //postId를 통해 post의 정보를 가져온다.
     const [post, setPost] = useState<postType>();
 
