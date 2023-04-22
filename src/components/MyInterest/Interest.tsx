@@ -1,26 +1,46 @@
 import { StyledImg, GreyDiv } from "components/Common/MyPageStyle";
 import { Column } from "components/Common/DivStyle";
-import img1 from "../../assets/imgs/test/3.jpg";
-import FundStatus from "components/FundStatus/FundStatus";
+import { postType } from "utils/types";
+import { useState, useEffect } from "react";
+import { ViewApi } from "api/post";
+import { Link } from "react-router-dom";
 
-const Interest = () => {
+interface propsType {
+    postId: number;
+}
+
+const Interest = ({ postId }: propsType) => {
+    const [post, setPost] = useState<postType>();
+
+    //postId로 post 정보를 가져온다.
+    useEffect(() => {
+        const getPost = async () => {
+            setPost(await ViewApi(postId));
+        };
+
+        getPost();
+    }, []);
+
     return (
-        <GreyDiv>
-            <StyledImg src={img1}></StyledImg>
-            <Column
-                style={{
-                    height: "134px",
-                    justifyContent: "space-between",
-                }}
-            >
-                <Column style={{ gap: "10px" }}>
-                    <text className="postTitle">
-                        퓨리를 위해 모금 부탁드립니다
-                    </text>
-                    <text className="author">고양시캣맘</text>
+        <Link
+            to={`/post/${postId}`}
+            style={{ color: "black", textDecoration: "none" }}
+        >
+            <GreyDiv>
+                <StyledImg src={post?.images[0]}></StyledImg>
+                <Column
+                    style={{
+                        height: "134px",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    <Column style={{ gap: "10px" }}>
+                        <text className="postTitle">{post?.title}</text>
+                        <text className="author">{post?.uploader_id}</text>
+                    </Column>
                 </Column>
-            </Column>
-        </GreyDiv>
+            </GreyDiv>
+        </Link>
     );
 };
 

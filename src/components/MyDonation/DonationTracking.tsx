@@ -1,7 +1,14 @@
 import { Column, Row } from "components/Common/DivStyle";
 import { Container, TrackingDiv, Circle, Bar } from "./Style";
 
-const DonationTracking = () => {
+interface propsType {
+    status: number;
+}
+
+const DonationTracking = ({ status }: propsType) => {
+    const statusArr = [0, 0, 0, 0, 0];
+    statusArr.fill(1, 0, status);
+
     return (
         <Container style={{}}>
             <Column style={{ width: "calc(100% - 74px)", gap: "20px" }}>
@@ -11,10 +18,14 @@ const DonationTracking = () => {
                 </Row>
                 <TrackingDiv>
                     <Row style={{ width: "100%", position: "absolute" }}>
-                        <Bar className="checked_bar"></Bar>
-                        <Bar className="checked_bar"></Bar>
-                        <Bar className="unchecked_bar"></Bar>
-                        <Bar className="unchecked_bar"></Bar>
+                        {statusArr.shift() &&
+                            statusArr.map((item) =>
+                                item ? (
+                                    <Bar className="checked_bar"></Bar>
+                                ) : (
+                                    <Bar className="unchecked_bar"></Bar>
+                                )
+                            )}
                     </Row>
                     <Row
                         style={{
@@ -22,11 +33,13 @@ const DonationTracking = () => {
                             justifyContent: "space-between",
                         }}
                     >
-                        <Circle className="checked"></Circle>
-                        <Circle className="checked"></Circle>
-                        <Circle className="unchecked"></Circle>
-                        <Circle className="unchecked"></Circle>
-                        <Circle className="unchecked"></Circle>
+                        {statusArr.map((item) =>
+                            item ? (
+                                <Circle className="checked"></Circle>
+                            ) : (
+                                <Circle className="unchecked"></Circle>
+                            )
+                        )}
                     </Row>
                 </TrackingDiv>
             </Column>
