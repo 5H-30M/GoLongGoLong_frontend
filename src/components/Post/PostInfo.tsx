@@ -18,7 +18,7 @@ const PostInfo = ({ post }: propsType) => {
                 new Date(createdAt).toLocaleString().substr(0, 11)
             ).getTime()) /
         (60 * 60 * 24 * 1000);
-    const leftDays = post.period - passDays;
+    const leftDays = post.period - passDays >= 0 ? post.period - passDays : 0;
     const dateFormat = (date: Date) => {
         const formatted: string =
             date.getFullYear() +
@@ -35,7 +35,7 @@ const PostInfo = ({ post }: propsType) => {
             new Date(createdAt).getTime() + post.period * (60 * 60 * 24 * 1000)
         )
     );
-    console.log(post);
+
     return (
         <Container>
             <text
@@ -83,7 +83,9 @@ const PostInfo = ({ post }: propsType) => {
                             {endDate}
                         </text>
                     </RowDiv>
-                    <GreyButton>기부하기</GreyButton>
+                    <GreyButton>
+                        {post.status ? "기부종료" : "기부하기"}
+                    </GreyButton>
                 </Right>
             </Row>
         </Container>
