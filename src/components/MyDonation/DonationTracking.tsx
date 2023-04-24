@@ -8,6 +8,7 @@ interface propsType {
 const DonationTracking = ({ status }: propsType) => {
     const statusArr = [0, 0, 0, 0, 0];
     statusArr.fill(1, 0, status);
+    const shiftedStatusArr = [...statusArr];
 
     return (
         <Container style={{}}>
@@ -18,8 +19,8 @@ const DonationTracking = ({ status }: propsType) => {
                 </Row>
                 <TrackingDiv>
                     <Row style={{ width: "100%", position: "absolute" }}>
-                        {statusArr.shift() &&
-                            statusArr.map((item) =>
+                        {shiftedStatusArr.shift() &&
+                            shiftedStatusArr.map((item) =>
                                 item ? (
                                     <Bar className="checked_bar"></Bar>
                                 ) : (

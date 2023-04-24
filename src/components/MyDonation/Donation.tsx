@@ -1,5 +1,4 @@
 import { GreyDiv, StyledImg } from "components/Common/MyPageStyle";
-import img1 from "../../assets/imgs/test/1.jpg";
 import DonationTracking from "components/MyDonation/DonationTracking";
 import { Row, Column } from "components/Common/DivStyle";
 import { donationsType, postType } from "utils/types";
@@ -30,7 +29,7 @@ const Donation = ({ info }: propsType) => {
         >
             <GreyDiv style={{ flexDirection: "column", gap: "20px" }}>
                 <Row style={{ gap: "24px" }}>
-                    <StyledImg src={img1}></StyledImg>
+                    <StyledImg src={post?.images[0]}></StyledImg>
                     <Column style={{ gap: "10px" }}>
                         <text className="postTitle">{post?.title}</text>
                         <text className="author">{post?.uploader_id}</text>
