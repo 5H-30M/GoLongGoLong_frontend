@@ -1,11 +1,12 @@
+import { Row, Column } from "components/Common/DivStyle";
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 68px;
+    padding: 18px 120px;
 
     /* text */
     .menu {
@@ -19,15 +20,19 @@ const Container = styled.div`
         width: 35px;
     }
 `;
-const Left = styled.div`
-    display: flex;
-    flex-direction: row;
+export const Left = styled(Row)`
     justify-content: center;
     align-items: center;
     gap: 15px;
 `;
-const Right = styled(Left)`
+export const Right = styled(Row)`
+    justify-content: center;
+    align-items: center;
     gap: 64px;
 `;
-
-export { Container, Right, Left };
+export const StyledColumn = styled(Column)`
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    gap: 5px;
+`;

@@ -1,13 +1,14 @@
+import { StyledButton } from "components/Common/ButtonStyle";
 import { Column, Row } from "components/Common/DivStyle";
 import styled from "styled-components";
 
-const Container = styled(Column)`
+export const Container = styled(Column)`
     width: 49vw;
     text {
         font-size: 14px;
     }
 `;
-const GreyDiv = styled(Row)`
+export const GreyDiv = styled(Row)`
     width: 100%;
     padding: 14px;
 
@@ -20,12 +21,20 @@ const GreyDiv = styled(Row)`
         background-color: transparent;
         border: none;
         height: 100%;
-        weight: 100%;
+        width: 100%;
+        padding: 5px;
 
-        &focused {
-            border: none;
-        }
+        border: none;
+        outline: none;
     }
 `;
 
-export { Container, GreyDiv };
+export const Button = styled(StyledButton)`
+    width: 71px;
+    padding: 10px;
+
+    border-radius: 5px;
+    background-color: #999999;
+    color: #ffffff;
+    font-size: 15px;
+`;

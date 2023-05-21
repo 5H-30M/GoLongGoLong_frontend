@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { postType, epilPostType } from "utils/types";
 import { useParams } from "react-router-dom";
 import CommentBox from "components/Comment/CommentBox";
+import { Line } from "components/Common/PostStyle";
 
 const EpiloguePost = () => {
     const epilpostId = useParams().id;
@@ -37,8 +38,12 @@ const EpiloguePost = () => {
                 <Container>
                     <PostInfo post={post}></PostInfo>
                     <EpiloguePostContents post={post} epilpost={epilpost} />
+                    <Line />
                     <Author />
-                    <CommentBox comments={epilpost.comments} />
+                    <CommentBox
+                        epilpost={epilpost}
+                        comments={epilpost.comments}
+                    />
                 </Container>
             ) : (
                 ""
