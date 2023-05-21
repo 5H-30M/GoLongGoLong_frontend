@@ -2,9 +2,9 @@ name: React App CI/CD
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     
 env:
   S3_BUCKET_NAME: be-0-name
