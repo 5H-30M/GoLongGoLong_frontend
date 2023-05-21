@@ -1,22 +1,49 @@
 import axios from "axios";
 
-const RegisterInfoApi = () => {
-    let body = {
-        // 등록할 정보
+interface kakaoApiType {
+    token: string;
+}
+export const GetKakaoUserApi = async ({ token }: kakaoApiType) => {
+    const headers = {
+        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+        Authorization: `Bearer ${token}`,
     };
-    axios
-        .post("/users/my/info", body)
-        .then(() => {
-            // 정보 등록 로직
-        })
-        .catch((err) => {
-            console.log(err);
+    try {
+        let res = await axios.get("https://kapi.kakao.com/v2/user/me", {
+            headers,
         });
+        console.log(res);
+        return res.data; //사용자 정보(connected_at, email)을 리턴한다.
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
 };
 
-const ViewInfoApi = async () => {
+interface emailType {
+    email: string;
+}
+export const RegisterApi = async ({ email }: emailType) => {
     try {
-        let res = await axios.get("/users/my/info");
+        let res = await axios.post("/users/my/info", email);
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+        throw err;
+    }
+};
+export const ViewApi = async ({ email }: emailType) => {
+    try {
+        let res = await axios.post("/users/my/info", email);
+        return res.data;
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
+};
+export const ViewByIdApi = async (userId: number) => {
+    try {
+        let res = await axios.post("/users/my/info", userId);
         return res.data;
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
@@ -24,7 +51,7 @@ const ViewInfoApi = async () => {
     }
 };
 
-const UpdateInfoApi = () => {
+export const UpdateApi = () => {
     let body = {
         // 업데이트할 정보
     };
@@ -39,7 +66,7 @@ const UpdateInfoApi = () => {
         });
 };
 
-const InterestApi = () => {
+export const InterestApi = () => {
     axios
         .get("users/my/info/like")
         .then((res) => {
@@ -59,12 +86,4 @@ const DonationApi = () => {
         .catch((err) => {
             console.log(err);
         });
-};
-
-export {
-    RegisterInfoApi,
-    ViewInfoApi,
-    UpdateInfoApi,
-    InterestApi,
-    DonationApi,
 };
