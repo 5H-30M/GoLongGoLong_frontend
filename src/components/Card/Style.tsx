@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Column, Row } from "components/Common/DivStyle";
 
-const Container = styled(Column)`
+export const Container = styled(Column)`
     width: 236px;
     margin: 25px 0px;
     gap: 26px;
@@ -10,7 +10,7 @@ const Container = styled(Column)`
     border-bottom: 4px solid #d0d0d0;
     padding-bottom: 15px;
 `;
-const CardInfo = styled(Column)`
+export const Info = styled(Column)`
     gap: 13px;
 
     img {
@@ -27,9 +27,8 @@ const CardInfo = styled(Column)`
         color: #999999;
     }
 `;
-const Mark = styled(Row)`
-    width: 37px;
-    height: 20px;
+export const Mark = styled(Row)`
+    padding: 5px 9px;
     justify-content: center;
     align-items: center;
 
@@ -43,5 +42,3 @@ const Mark = styled(Row)`
     background-color: #444444;
     color: #ffffff;
 `;
-
-export { Container, CardInfo, Mark };
