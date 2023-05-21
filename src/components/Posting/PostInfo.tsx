@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { GreyButton } from "components/Common/ButtonStyle";
 import { Column, Row } from "components/Common/DivStyle";
-import { postType } from "utils/types";
+import { postingPostType } from "utils/types";
 import React, { useRef, useState } from "react";
 import defaultImg from "../../assets/imgs/default.png";
 import UploadImage from "utils/S3";
 
 interface propsType {
-    data: postType;
-    setData: React.Dispatch<React.SetStateAction<postType>>;
+    data: postingPostType;
+    setData: React.Dispatch<React.SetStateAction<postingPostType>>;
 }
 
 const PostInfo = ({ data, setData }: propsType) => {

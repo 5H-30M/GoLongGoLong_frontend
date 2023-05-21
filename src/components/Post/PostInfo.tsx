@@ -1,24 +1,19 @@
 import styled from "styled-components";
-import { GreyButton } from "components/Common/ButtonStyle";
 import { Column, Row } from "components/Common/DivStyle";
 import { postType } from "utils/types";
+import StatusButton from "./StatusButton";
+import { calLeftDays, calPercent } from "components/Common/CalculateInfo";
 
 interface propsType {
     post: postType;
 }
 
 const PostInfo = ({ post }: propsType) => {
-    const totalAmount = post.amount != undefined ? post.amount : -1;
+    const totalAmount = post.amount;
     const donators = post.raised_people;
-    const createdAt = post.created_at ? post.created_at : "";
-    const percent = ((totalAmount / post.target_amount) * 100).toFixed(0);
-    const passDays =
-        (new Date(new Date().toLocaleString().substr(0, 11)).getTime() -
-            new Date(
-                new Date(createdAt).toLocaleString().substr(0, 11)
-            ).getTime()) /
-        (60 * 60 * 24 * 1000);
-    const leftDays = post.period - passDays >= 0 ? post.period - passDays : 0;
+    const createdAt = post.created_at;
+    const percent = calPercent({ post });
+    const leftDays = calLeftDays({ post });
     const dateFormat = (date: Date) => {
         const formatted: string =
             date.getFullYear() +
@@ -79,13 +74,10 @@ const PostInfo = ({ post }: propsType) => {
                     </RowDiv>
                     <RowDiv>
                         <text className="small">
-                            모금기간 &nbsp; {startDate} &nbsp; ~ &nbsp;{" "}
-                            {endDate}
+                            모금기간 &nbsp; {startDate} &nbsp; ~ &nbsp;{endDate}
                         </text>
                     </RowDiv>
-                    <GreyButton>
-                        {post.status ? "기부종료" : "기부하기"}
-                    </GreyButton>
+                    <StatusButton post={post} />
                 </Right>
             </Row>
         </Container>
@@ -100,6 +92,8 @@ const Container = styled.div`
     align-items: center;
     margin: 50px 0;
     gap: 50px;
+
+    position: relative;
 
     img {
         width: 573px;
