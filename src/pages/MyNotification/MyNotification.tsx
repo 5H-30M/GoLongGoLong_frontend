@@ -3,7 +3,7 @@ import Notification from "components/MyNotification/Notification";
 import { userType } from "utils/types";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { testUser } from "App";
+import { testUser } from "redux/authSlice";
 
 const MyNotification = () => {
     const userId = useParams().id;
