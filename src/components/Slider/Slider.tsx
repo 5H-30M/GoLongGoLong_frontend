@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useInterval from "../../hooks/useInterval";
 import { Container, Slide, Chevron, Before, Next } from "./Style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 /* img files */
 import blockchain from "../../assets/imgs/banners/blockchain.png";
 import afterstory from "../../assets/imgs/banners/afterstory.png";
@@ -9,11 +9,16 @@ import catinmytown from "../../assets/imgs/banners/catinmytown.png";
 import urgentcats from "../../assets/imgs/banners/urgentcats.png";
 import leftChevron from "../../assets/imgs/left-chevron.png";
 import rightChevron from "../../assets/imgs/right-chevron.png";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { setFilteredBy } from "redux/postSlice";
+import { StyledButton } from "components/Common/ButtonStyle";
 
 const Slider = () => {
     const [x, setX] = useState<number>(-100);
     const [trans, setTrans] = useState<boolean>(true);
     const [ismoving, setIsmoving] = useState<boolean>(); //슬라이드가 이미 움직이는 중에는 움직이라는 명령을 또 받을 수 없다.
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     useInterval(() => {
         /* 3초마다 자동으로 다음 슬라이드로 이동 */
@@ -69,6 +74,14 @@ const Slider = () => {
             setTimeout(() => setIsmoving(false), 1100);
         }
     };
+    const onClickUrgentCats = () => {
+        dispatch(setFilteredBy("urgent"));
+        navigate("/");
+    };
+    const onclickCatinmytown = () => {
+        dispatch(setFilteredBy("region"));
+        navigate("/");
+    };
 
     return (
         <Container>
@@ -76,13 +89,21 @@ const Slider = () => {
                 <Link to="/epilogue">
                     <img src={afterstory}></img>
                 </Link>
-                <img src={blockchain}></img>
-                <img src={urgentcats}></img>
-                <img src={catinmytown}></img>
+                <Link to="/">
+                    <img src={blockchain}></img>
+                </Link>
+                <StyledButton onClick={onClickUrgentCats}>
+                    <img src={urgentcats}></img>
+                </StyledButton>
+                <StyledButton onClick={onclickCatinmytown}>
+                    <img src={catinmytown}></img>
+                </StyledButton>
                 <Link to="/epilogue">
                     <img src={afterstory}></img>
                 </Link>
-                <img src={blockchain}></img>
+                <Link to="/">
+                    <img src={blockchain}></img>
+                </Link>
             </Slide>
 
             <Before onClick={onClickBefore}>
