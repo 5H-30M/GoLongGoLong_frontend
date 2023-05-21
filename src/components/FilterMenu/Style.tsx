@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Column } from "components/Common/DivStyle";
+import { Column, Row } from "components/Common/DivStyle";
 
-const Container = styled(Column)`
+export const Container = styled(Column)`
     width: 134px;
     justify-content: center;
     align-items: center;
@@ -18,5 +18,10 @@ const Container = styled(Column)`
     top: 40px;
     left: 0;
 `;
-
-export { Container };
+export const Wrapper = styled(Row)`
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0;
+    font-size: 25px;
+`;
