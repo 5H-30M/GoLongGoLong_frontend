@@ -1,49 +1,117 @@
-import { Column, Row } from "components/Common/DivStyle";
-import { Container, TrackingDiv, Circle, Bar } from "./Style";
+import { Column } from "components/Common/DivStyle";
+import { Container, TrackingDiv, State, Circle, Bar, Text } from "./Style";
+import { useState } from "react";
+import ShowTxModal from "ShowTxModal/ShowTxModal";
+import { useNavigate } from "react-router-dom";
 
 interface propsType {
+    postId: number;
     status: number;
+    txList: string[];
 }
 
-const DonationTracking = ({ status }: propsType) => {
-    const statusArr = [0, 0, 0, 0, 0];
-    statusArr.fill(1, 0, status);
-    const shiftedStatusArr = [...statusArr];
+const DonationTracking = ({ postId, status, txList }: propsType) => {
+    const [modal, setModal] = useState<boolean>(false);
+    const [txId, setTxId] = useState<string | undefined>();
+    const navigate = useNavigate();
 
     return (
-        <Container style={{}}>
-            <Column style={{ width: "calc(100% - 74px)", gap: "20px" }}>
-                <Row style={{ gap: "14px" }}>
-                    <text className="tracking">내 기부금 트래킹</text>
-                    <text className="more">자세히</text>
-                </Row>
+        <Container>
+            <Column style={{ width: "100%", gap: "15px" }}>
+                <text style={{ fontSize: "13px", fontWeight: "bold" }}>
+                    내 기부금 트래킹
+                </text>
                 <TrackingDiv>
-                    <Row style={{ width: "100%", position: "absolute" }}>
-                        {shiftedStatusArr.shift() &&
-                            shiftedStatusArr.map((item) =>
-                                item ? (
-                                    <Bar className="checked_bar"></Bar>
-                                ) : (
-                                    <Bar className="unchecked_bar"></Bar>
-                                )
-                            )}
-                    </Row>
-                    <Row
-                        style={{
-                            width: "100%",
-                            justifyContent: "space-between",
-                        }}
-                    >
-                        {statusArr.map((item) =>
-                            item ? (
+                    {status >= 0 ? (
+                        <State
+                            onClick={() => {
+                                setModal(true);
+                                setTxId(txList[0]);
+                            }}
+                            style={{ cursor: "pointer" }}
+                        >
+                            <Circle className="checked"></Circle>
+                            <Text>내 기부</Text>
+                        </State>
+                    ) : (
+                        <State>
+                            <Circle className="unchecked"></Circle>
+                            <Text>내 기부</Text>
+                        </State>
+                    )}
+                    {status >= 1 ? (
+                        <>
+                            <Bar className="checked_bar"></Bar>
+                            <State
+                                onClick={() => {
+                                    setModal(true);
+                                    setTxId(txList[1]);
+                                }}
+                                style={{ cursor: "pointer" }}
+                            >
                                 <Circle className="checked"></Circle>
-                            ) : (
+                                <Text>모금 완료</Text>
+                            </State>
+                        </>
+                    ) : (
+                        <>
+                            <Bar className="unchecked_bar"></Bar>
+                            <State>
                                 <Circle className="unchecked"></Circle>
-                            )
-                        )}
-                    </Row>
+                                <Text>모금 완료</Text>
+                            </State>
+                        </>
+                    )}
+
+                    {status >= 2 ? (
+                        <>
+                            <Bar className="checked_bar"></Bar>
+                            <State
+                                onClick={() => {
+                                    setModal(true);
+                                    setTxId(txList[2]);
+                                }}
+                                style={{ cursor: "pointer" }}
+                            >
+                                <Circle className="checked"></Circle>
+                                <Text>기부금 전달</Text>
+                            </State>
+                        </>
+                    ) : (
+                        <>
+                            <Bar className="unchecked_bar"></Bar>
+                            <State>
+                                <Circle className="unchecked"></Circle>
+                                <Text>기부금 전달</Text>
+                            </State>
+                        </>
+                    )}
+                    {status == 4 ? (
+                        <>
+                            <Bar className="checked_bar"></Bar>
+                            <State
+                                onClick={() => {
+                                    navigate(`/epilogue/post/3`);
+                                }}
+                                style={{ cursor: "pointer" }}
+                            >
+                                <Circle className="checked"></Circle>
+                                <Text>후기 작성</Text>
+                            </State>
+                        </>
+                    ) : (
+                        <>
+                            <Bar className="unchecked_bar"></Bar>
+                            <State>
+                                <Circle className="unchecked"></Circle>
+                                <Text>후기 작성</Text>
+                            </State>
+                        </>
+                    )}
                 </TrackingDiv>
             </Column>
+
+            {modal && txId && <ShowTxModal txId={txId} setModal={setModal} />}
         </Container>
     );
 };
