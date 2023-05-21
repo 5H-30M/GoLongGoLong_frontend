@@ -18,6 +18,7 @@ export const postSlice = createSlice({
         epiloguePost: [],
         isLoading: false,
         error: "",
+        filteredBy: "new",
     },
     reducers: {
         setDonaPost: (state, action) => {
@@ -29,6 +30,9 @@ export const postSlice = createSlice({
         clearPostdata: (state, action) => {
             state.donationPost = [];
             state.epiloguePost = [];
+        },
+        setFilteredBy: (state, action) => {
+            state.filteredBy = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -62,5 +66,6 @@ export const postSlice = createSlice({
     },
 });
 
-export const { setDonaPost, setEpilPost, clearPostdata } = postSlice.actions;
+export const { setDonaPost, setEpilPost, clearPostdata, setFilteredBy } =
+    postSlice.actions;
 export default postSlice.reducer;
