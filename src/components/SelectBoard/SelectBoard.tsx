@@ -5,6 +5,8 @@ import downArrow from "../../assets/imgs/downArrow.png";
 import upArrow from "../../assets/imgs/upArrow.png";
 import { useState } from "react";
 import FilterMenu from "components/FilterMenu/FilterMenu";
+import { postType, epilPostType } from "utils/types";
+import { useAppSelector } from "hooks/useAppSelector";
 
 interface propsType {
     kindOfCard: string;
@@ -15,6 +17,17 @@ const SelectBoard = ({ kindOfCard }: propsType) => {
     const handleImgClick = () => {
         setDownarrow(!downarrow);
     };
+
+    //post 정보를 가져와 post 개수를 알아낸다.
+    const donaPosts: postType[] = useAppSelector(
+        (state) => state.post.donationPost
+    );
+    const epilPosts: epilPostType[] = useAppSelector(
+        (state) => state.post.epiloguePost
+    );
+    const donaLength = donaPosts?.length;
+    const epilLength = epilPosts?.length;
+
     return (
         <Container>
             <Menu
@@ -27,7 +40,7 @@ const SelectBoard = ({ kindOfCard }: propsType) => {
                     <Row>
                         <>
                             모금글&nbsp;&nbsp;
-                            <text className="number">34&nbsp;</text>
+                            <text className="number">{donaLength}&nbsp;</text>
                         </>
 
                         {window.location.pathname === "/" ? (
@@ -53,7 +66,8 @@ const SelectBoard = ({ kindOfCard }: propsType) => {
                         kindOfCard === "epilogue" ? "2px solid black" : "none"
                     }
                 >
-                    모금후기&nbsp;&nbsp;<text className="number">34</text>
+                    모금후기&nbsp;&nbsp;
+                    <text className="number">{epilLength}</text>
                 </Menu>
             </Link>
         </Container>
