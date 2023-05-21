@@ -29,7 +29,7 @@ const Container = styled.div`
     }
 `;
 const Line = styled.div`
-    width: 100%;
+    width: 49vw;
     height: 6px;
     background-color: #444444;
     margin-top: 50px;
