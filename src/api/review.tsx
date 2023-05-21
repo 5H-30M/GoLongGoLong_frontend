@@ -1,8 +1,8 @@
 import axios from "axios";
-import { epilPostType } from "utils/types";
+import { epilPostType, postingEpilType } from "utils/types";
 
 interface propsType {
-    epilpost?: epilPostType;
+    epilpost?: epilPostType | postingEpilType;
     reviewId?: number;
 }
 

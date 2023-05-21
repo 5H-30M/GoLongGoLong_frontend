@@ -1,8 +1,8 @@
 import axios from "axios";
-import { postType } from "utils/types";
+import { postType, postingPostType } from "utils/types";
 
 interface propsType {
-    post?: postType;
+    post?: postType | postingPostType;
     postId?: number;
 }
 
@@ -29,7 +29,9 @@ export const WriteApi = async ({ post }: propsType) => {
     }
 };
 
-export const ViewApi = async (postId: number) => {
+export const ViewApi = async (
+    postId: number
+): Promise<postType | undefined> => {
     try {
         let res = await axios.get(`/board/${postId}`);
         return res.data;
@@ -41,8 +43,8 @@ export const ViewApi = async (postId: number) => {
 
 export const UpdateApi = async ({ post, postId }: propsType) => {
     try {
-        await axios.put(`/board/${postId}`, post);
-        alert("글이 수정되었습니다.");
+        await axios.patch(`/board/${postId}`, post);
+        console.log("글이 수정되었습니다.");
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
         else console.log(err);

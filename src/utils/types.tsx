@@ -2,7 +2,7 @@ export interface donationsType {
     post_id: number;
     donated_at: string;
     amount: number;
-    trx_id: string;
+    trx_id: string[];
 }
 
 export interface notificationsType {
@@ -25,10 +25,17 @@ export interface userType {
     nickname: string;
     sns_email: string;
     created_at: string;
+    region: string;
 }
 
+export interface postingEpilType {
+    content: string;
+    postId: number;
+    receipt: string;
+    usedList: object;
+}
 export interface epilPostType {
-    comments?: [
+    comments: [
         {
             comment_id: number;
             content: string;
@@ -38,25 +45,47 @@ export interface epilPostType {
         }
     ];
     content: string;
-    createdAt?: string;
-    id?: number;
+    createdAt: string;
+    id: number;
     postId: number;
     receipt: string;
     usedList: object;
 }
 
-export interface postType {
-    amount?: number;
+export interface postingPostType {
     content: string;
-    created_at?: string;
     images: string[];
     period: number;
     plans: object;
-    post_id?: number;
-    raised_people?: number;
-    region?: string;
-    status?: number;
     target_amount: number;
     title: string;
     uploader_id: number;
+}
+export interface postType {
+    amount: number;
+    content: string;
+    created_at: string;
+    images: string[];
+    period: number;
+    plans: object;
+    post_id: number;
+    raised_people: number;
+    region: string;
+    status: number;
+    target_amount: number;
+    title: string;
+    uploader_id: number;
+}
+
+export interface commentType {
+    comment_id: number;
+    content: string;
+    created_at: string;
+    review_id: number;
+    writer_id: number;
+}
+export interface postingCommentType {
+    content: string;
+    review_id: number;
+    writer_id: number;
 }
