@@ -4,14 +4,14 @@ import React, { useState, useEffect, useRef } from "react";
 import { GreyButton } from "components/Common/ButtonStyle";
 import add from "../../assets/imgs/add.png";
 import ListInput from "./ListInput";
-import { epilPostType } from "utils/types";
+import { postingEpilType } from "utils/types";
 import UploadImage from "utils/S3";
 import { Column, Row } from "components/Common/DivStyle";
 import defaultImg from "../../assets/imgs/default.png";
 
 interface propsType {
-    data: epilPostType;
-    setData: React.Dispatch<React.SetStateAction<epilPostType>>;
+    data: postingEpilType;
+    setData: React.Dispatch<React.SetStateAction<postingEpilType>>;
 }
 
 let globalIdx: number = 0;

@@ -4,11 +4,11 @@ import React, { useState, useEffect } from "react";
 import { GreyButton } from "components/Common/ButtonStyle";
 import add from "../../assets/imgs/add.png";
 import ListInput from "./ListInput";
-import { postType } from "utils/types";
+import { postingPostType } from "utils/types";
 
 interface propsType {
-    data: postType;
-    setData: React.Dispatch<React.SetStateAction<postType>>;
+    data: postingPostType;
+    setData: React.Dispatch<React.SetStateAction<postingPostType>>;
 }
 
 let globalIdx: number = 0;

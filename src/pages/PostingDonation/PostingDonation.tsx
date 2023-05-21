@@ -2,23 +2,25 @@ import PostContents from "components/Posting/PostContents";
 import { Container } from "./Style";
 import PostInfo from "components/Posting/PostInfo";
 import { useState } from "react";
-import { postType } from "utils/types";
+import { postingPostType } from "utils/types";
 import { GreyButton } from "components/Common/ButtonStyle";
 import { Row } from "components/Common/DivStyle";
 import PostPlan from "components/Posting/PostPlan";
 import { WriteApi } from "api/post";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "hooks/useAppSelector";
 
 const PostingDonation = () => {
+    const user = useAppSelector((state) => state.auth.userData);
     const navigator = useNavigate();
-    const [post, setPost] = useState<postType>({
+    const [post, setPost] = useState<postingPostType>({
         content: "",
         images: [],
         period: 0,
         plans: {},
         target_amount: 0,
         title: "",
-        uploader_id: -1,
+        uploader_id: user.user_id,
     });
     const handleSubmit = async () => {
         const res = await WriteApi({ post });
