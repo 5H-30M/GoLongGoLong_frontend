@@ -1,27 +1,9 @@
 import axios from "axios";
+import { postingCommentType } from "utils/types";
 
-export interface commentType {
-    comment?: {
-        comment_id: number;
-        content: string;
-        created_at: string;
-        review_id: number;
-        writer_id: number;
-    };
-    comments?: [
-        {
-            comment_id: number;
-            content: string;
-            created_at: string;
-            review_id: number;
-            writer_id: number;
-        }
-    ];
-}
-
-export const WriteApi = async ({ comment }: commentType) => {
+export const WriteApi = async (comment: postingCommentType) => {
     try {
-        await axios.post(`board/comment/`, comment);
+        await axios.post("/board/comment", comment);
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
         else console.log(err);
@@ -30,7 +12,7 @@ export const WriteApi = async ({ comment }: commentType) => {
 
 export const DeleteApi = async (commentId: number) => {
     try {
-        await axios.delete(`board/comment/${commentId}`);
+        await axios.delete(`/board/comment/${commentId}`);
         alert("댓글이 삭제되었습니다.");
     } catch (err) {
         if (err instanceof Error) console.log(err.message);

@@ -1,14 +1,18 @@
 import { Container } from "./Style";
-import { commentType } from "api/comment";
+import { commentType } from "utils/types";
 import Comment from "./Comment";
 import { ThinLine } from "components/Common/PostStyle";
 
-const Comments = ({ comments }: commentType) => {
+interface propsType {
+    comments: commentType[];
+}
+
+const Comments = ({ comments }: propsType) => {
     const renderComments = () => {
         const result: any[] = [];
         result.push(
             comments?.map((comment, index) => {
-                return <Comment comment={comment} />;
+                return <Comment key={index} comment={comment} />;
             })
         );
         return result;
@@ -18,7 +22,7 @@ const Comments = ({ comments }: commentType) => {
             <ThinLine />
             <text style={{ fontSize: "20px", padding: "30px 0" }}>
                 댓글&nbsp;
-                {comments ? (
+                {comments && (
                     <text
                         style={{
                             fontSize: "20px",
@@ -28,11 +32,9 @@ const Comments = ({ comments }: commentType) => {
                     >
                         {comments.length}
                     </text>
-                ) : (
-                    ""
                 )}
             </text>
-            {comments ? renderComments() : ""}
+            {comments && renderComments()}
         </Container>
     );
 };
