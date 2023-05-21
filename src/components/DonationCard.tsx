@@ -1,28 +1,27 @@
-import FundStatus from "components/FundStatus/FundStatus";
+import CardInfo from "components/CardInfo/CardInfo";
 import { Card } from "./Card/Card";
 import { postType } from "utils/types";
+import { calLeftDays } from "./Common/CalculateInfo";
 
 interface propsType {
     post: postType;
 }
 
 const DonationCard = ({ post }: propsType) => {
-    const createdAt = post.created_at ? post.created_at : "";
-    const totalAmount = post.amount != undefined ? post.amount : -1;
-
     return (
         <Card.Container>
             <Card
                 thumbnail={post.images[0]}
                 title={post.title}
-                author={post.uploader_id}
+                uploader_id={post.uploader_id}
             />
-            <FundStatus
-                totalAmount={totalAmount}
-                targetAmount={post.target_amount}
-                createdAt={createdAt}
-                period={post.period}
-            />
+            <CardInfo post={post} />
+
+            {calLeftDays({ post }) == 0 ? (
+                <Card.CompleMark></Card.CompleMark>
+            ) : (
+                ""
+            )}
         </Card.Container>
     );
 };

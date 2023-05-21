@@ -25,13 +25,13 @@ const EpilogueCard = ({ epilpost }: propsType) => {
                 <Card
                     thumbnail={post.images[0]}
                     title={post.title}
-                    author={post.uploader_id}
+                    uploader_id={post.uploader_id}
                 />
             ) : (
                 ""
             )}
 
-            <Card.Mark></Card.Mark>
+            <Card.EpilMark></Card.EpilMark>
         </Card.Container>
     );
 };
