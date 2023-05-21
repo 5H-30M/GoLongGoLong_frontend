@@ -26,7 +26,7 @@ interface planListType {
     planNum: number;
 }
 
-const PlanList = ({ planName, planNum }: planListType) => {
+export const PlanList = ({ planName, planNum }: planListType) => {
     return (
         <Row style={{ justifyContent: "space-between", paddingBottom: "7px" }}>
             <li>{planName}</li>
