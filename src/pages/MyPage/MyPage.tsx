@@ -3,12 +3,13 @@ import { Row, Column } from "components/Common/DivStyle";
 import { userType } from "utils/types";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { testUser } from "App";
 import Interest from "components/MyInterest/Interest";
 import styled from "styled-components";
 import pawprint from "../../assets/imgs/pawprint.png";
 import { ThinLine } from "components/Common/PostStyle";
 import { GreyButton } from "components/Common/ButtonStyle";
+import { Link } from "react-router-dom";
+import { testUser } from "redux/authSlice";
 
 const MyPage = () => {
     const userId = useParams().id;
@@ -81,9 +82,14 @@ const MyPage = () => {
                                             &nbsp; 고롱
                                         </text>
                                     </Row>
-                                    <text style={{ fontSize: "10px" }}>
-                                        충전하기
-                                    </text>
+                                    <Link
+                                        to={"/charge"}
+                                        style={{ color: "black" }}
+                                    >
+                                        <text style={{ fontSize: "10px" }}>
+                                            충전하기
+                                        </text>
+                                    </Link>
                                 </Column>
                             </Row>
                             <ThinLine style={{ margin: "30px 0" }} />
