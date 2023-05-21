@@ -7,7 +7,7 @@ on:
     branches: [ main ]
     
 env:
-  S3_BUCKET_NAME: be-0-name
+  S3_BUCKET_NAME: golong-github-action-bucket
   CI: false
 
 jobs:
