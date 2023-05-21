@@ -3,12 +3,12 @@ os: linux
 
 files:
     - source: /
-      destination: /home/ubuntu/react-app-deploy
+      destination: /home/ec2-user/react-app-deploy
       overwrite: yes
 permissions:
-    - object: /home/ubuntu/react-app-deploy
-      owner: ubuntu
-      group: ubuntu
+    - object: /home/ec2-user/react-app-deploy
+      owner: ec2-user
+      group: ec2-user
       mode: 755
 hooks:
     AfterInstall:
