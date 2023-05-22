@@ -41,9 +41,10 @@ const Board = ({ kindOfCard, donaPosts, epilPosts }: propsType): any => {
                 }
 
                 result.push(
-                    donaPosts.map((item, index) => {
+                    donaPosts?.map((item, index) => {
                         return (
                             <Link
+                                key={index}
                                 to={`/post/${item.post_id}`}
                                 style={{
                                     color: "black",
@@ -62,7 +63,7 @@ const Board = ({ kindOfCard, donaPosts, epilPosts }: propsType): any => {
         if (kindOfCard == "epilogue") {
             if (epilPosts && epilPosts.length > 0) {
                 result.push(
-                    epilPosts.map((item, index) => {
+                    epilPosts?.map((item, index) => {
                         return (
                             <Link
                                 key={index}
