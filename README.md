@@ -10,3 +10,4 @@
 ## 📍UI
 
 [https://www.figma.com/file/sCcmAu6x7oOPzeNhscMRFl/GoLong-GoLong?type=design&node-id=4-2338&t=mMme7Jgmigf0Q2Jr-0](https://www.figma.com/file/sCcmAu6x7oOPzeNhscMRFl/GoLong-GoLong?type=design&node-id=4-2338&t=mMme7Jgmigf0Q2Jr-0) 
+ 
