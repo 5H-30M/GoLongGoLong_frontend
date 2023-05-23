@@ -16,7 +16,6 @@ const Spinner = () => {
             const interval = setInterval(() => {
                 switch (result.length) {
                     case 0:
-                        console.log("h");
                         setResult((prevResult) => [
                             ...prevResult,
                             <PawImg top={165} left={parentWidth / 2 - 50} />,
