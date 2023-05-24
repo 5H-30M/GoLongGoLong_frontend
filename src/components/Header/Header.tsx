@@ -19,12 +19,14 @@ const Header = () => {
     const id = "user_id" in userData ? userData.user_id : undefined;
     //로그아웃 클릭 시 사용자 정보를 제거한다.
     const handleLogout = () => {
-        //리덕스의 사용자 정보 제거
-        dispatch(clearUser);
-        //localStorage 내 token 정보 제거
-        window.localStorage.clear();
-        //메인 화면으로 이동한다.
-        navigate("/");
+        if (window.confirm("로그아웃 하시겠습니까?")) {
+            //리덕스의 사용자 정보 제거
+            dispatch(clearUser);
+            //localStorage 내 token 정보 제거
+            window.localStorage.clear();
+            //메인 화면으로 이동한다.
+            navigate("/");
+        }
     };
     const renderRight = (): JSX.Element[] => {
         const result: any[] = [];
