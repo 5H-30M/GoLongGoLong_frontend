@@ -98,12 +98,7 @@ const Board = ({ kindOfCard, donaPosts, epilPosts }: propsType): any => {
     }
     return (
         <Container>
-            <Cards>
-                {(kindOfCard == "donation" && donaPosts) || //포스팅이 존재하는 경우에만 렌더한다.
-                (kindOfCard == "epilogue" && epilPosts)
-                    ? renderCard()
-                    : ""}
-            </Cards>
+            <Cards>{renderCard()}</Cards>
         </Container>
     );
 };
