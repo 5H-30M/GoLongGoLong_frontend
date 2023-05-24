@@ -6,6 +6,8 @@
 <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=blue">
 <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=purple">
 <img src="https://img.shields.io/badge/styled-component-DB7093?style=for-the-badge&logo=Redux&logoColor=pink">
+
 ## 📍UI
 
-[https://www.figma.com/file/sCcmAu6x7oOPzeNhscMRFl/GoLong-GoLong?type=design&node-id=4-2338&t=mMme7Jgmigf0Q2Jr-0](https://www.figma.com/file/sCcmAu6x7oOPzeNhscMRFl/GoLong-GoLong?type=design&node-id=4-2338&t=mMme7Jgmigf0Q2Jr-0)
+[https://www.figma.com/file/sCcmAu6x7oOPzeNhscMRFl/GoLong-GoLong?type=design&node-id=4-2338&t=mMme7Jgmigf0Q2Jr-0](https://www.figma.com/file/sCcmAu6x7oOPzeNhscMRFl/GoLong-GoLong?type=design&node-id=4-2338&t=mMme7Jgmigf0Q2Jr-0) 
+ 
