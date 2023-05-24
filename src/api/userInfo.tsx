@@ -1,4 +1,5 @@
 import axios from "axios";
+import { apiEndpoint } from "./endpoint";
 
 interface kakaoApiType {
     token: string;
@@ -25,7 +26,7 @@ interface emailType {
 }
 export const RegisterApi = async ({ email }: emailType) => {
     try {
-        let res = await axios.post("/users/my/info", email);
+        let res = await axios.post(`${apiEndpoint}/users/my/info`, email);
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
         else console.log(err);
@@ -34,7 +35,7 @@ export const RegisterApi = async ({ email }: emailType) => {
 };
 export const ViewApi = async ({ email }: emailType) => {
     try {
-        let res = await axios.post("/users/my/info", email);
+        let res = await axios.post(`${apiEndpoint}/users/my/info`, email);
         return res.data;
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
@@ -43,7 +44,7 @@ export const ViewApi = async ({ email }: emailType) => {
 };
 export const ViewByIdApi = async (userId: number) => {
     try {
-        let res = await axios.post("/users/my/info", userId);
+        let res = await axios.post(`${apiEndpoint}/users/my/info`, userId);
         return res.data;
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
@@ -56,7 +57,7 @@ export const UpdateApi = () => {
         // 업데이트할 정보
     };
     axios
-        .post("/users/my/info", body)
+        .post(`${apiEndpoint}/users/my/info`, body)
         .then(() => {
             alert("정보가 등록되었습니다.");
             // 리다이렉트
@@ -68,7 +69,7 @@ export const UpdateApi = () => {
 
 export const InterestApi = () => {
     axios
-        .get("users/my/info/like")
+        .get(`${apiEndpoint}/users/my/info/like`)
         .then((res) => {
             return res.data;
         })
@@ -79,7 +80,7 @@ export const InterestApi = () => {
 
 const DonationApi = () => {
     axios
-        .get("users/my/info/status")
+        .get(`${apiEndpoint}/users/my/info/status`)
         .then((res) => {
             return res.data;
         })

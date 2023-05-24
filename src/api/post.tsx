@@ -1,4 +1,5 @@
 import axios from "axios";
+import { apiEndpoint } from "./endpoint";
 import { postType, postingPostType } from "utils/types";
 
 interface propsType {
@@ -8,7 +9,7 @@ interface propsType {
 
 export const ViewAllApi = async () => {
     try {
-        let res = await axios.get("/board");
+        let res = await axios.get(`${apiEndpoint}/board`);
         return res.data;
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
@@ -18,7 +19,7 @@ export const ViewAllApi = async () => {
 
 export const WriteApi = async ({ post }: propsType) => {
     try {
-        await axios.post("/board", post);
+        await axios.post(`${apiEndpoint}/board`, post);
         alert("글이 작성되었습니다.");
         return true;
     } catch (err) {
@@ -33,7 +34,7 @@ export const ViewApi = async (
     postId: number
 ): Promise<postType | undefined> => {
     try {
-        let res = await axios.get(`/board/${postId}`);
+        let res = await axios.get(`${apiEndpoint}/board/${postId}`);
         return res.data;
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
@@ -43,7 +44,7 @@ export const ViewApi = async (
 
 export const UpdateApi = async ({ post, postId }: propsType) => {
     try {
-        await axios.patch(`/board/${postId}`, post);
+        await axios.patch(`${apiEndpoint}/board/${postId}`, post);
         console.log("글이 수정되었습니다.");
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
@@ -53,7 +54,7 @@ export const UpdateApi = async ({ post, postId }: propsType) => {
 
 export const DeleteApi = async ({ postId }: propsType) => {
     try {
-        await axios.delete(`/board/${postId}`);
+        await axios.delete(`${apiEndpoint}/board/${postId}`);
         alert("글이 삭제되었습니다.");
     } catch (err) {
         if (err instanceof Error) console.log(err.message);

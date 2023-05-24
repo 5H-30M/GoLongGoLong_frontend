@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { apiEndpoint } from "./endpoint";
 
 interface loginApiType {
     code: string;
 }
 export const LoginApi = async ({ code }: loginApiType) => {
     try {
-        let res = await axios.post("/api/oauth/token", code);
+        let res = await axios.post(`${apiEndpoint}/api/oauth/token`, code);
         console.log(res.data); //콘솔에 찍히는 데이터 형태 확인 후 수정
         //localStorage에 토큰과 만료정보를 저장한다.
         window.localStorage.setItem("accessToken", res.data.access_token);
@@ -48,7 +49,7 @@ export const RefreshTokenApi = async () => {
 export const DeleteUserApi = () => {
     const navigate = useNavigate();
     axios
-        .delete("/users")
+        .delete(`${apiEndpoint}/users`)
         .then(() => {
             alert("정상적으로 탈퇴 되었습니다.");
 

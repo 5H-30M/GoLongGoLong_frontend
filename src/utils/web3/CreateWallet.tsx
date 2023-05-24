@@ -28,6 +28,8 @@ const CreateWallet = ({ password }: propsType) => {
 
     //user 정보에 지갑 주소와 암호화된 개인키 저장
     //CreateWalletApi(address, encryptedPrivateKey);
+    const ee = CryptoJS.AES.encrypt(privateKey, password);
+    console.log(`test : ${ee.key}`);
 
     return (
         <div>

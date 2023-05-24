@@ -1,5 +1,6 @@
 import axios from "axios";
 import { epilPostType, postingEpilType } from "utils/types";
+import { apiEndpoint } from "./endpoint";
 
 interface propsType {
     epilpost?: epilPostType | postingEpilType;
@@ -8,7 +9,7 @@ interface propsType {
 
 export const ViewAllApi = async () => {
     try {
-        let res = await axios.get("/review");
+        let res = await axios.get(`${apiEndpoint}/review`);
         return res.data;
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
@@ -18,7 +19,7 @@ export const ViewAllApi = async () => {
 
 export const ViewApi = async ({ reviewId }: propsType) => {
     try {
-        let res = await axios.get(`/review/${reviewId}`);
+        let res = await axios.get(`${apiEndpoint}/review/${reviewId}`);
         return res.data;
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
@@ -28,7 +29,7 @@ export const ViewApi = async ({ reviewId }: propsType) => {
 
 export const WriteApi = async ({ epilpost }: propsType) => {
     try {
-        await axios.post("/review", epilpost);
+        await axios.post(`${apiEndpoint}/review`, epilpost);
         alert("글이 작성되었습니다.");
         return true;
     } catch (err) {
@@ -41,7 +42,7 @@ export const WriteApi = async ({ epilpost }: propsType) => {
 
 export const UpdateApi = async ({ epilpost, reviewId }: propsType) => {
     try {
-        await axios.put(`/review/${reviewId}`, epilpost);
+        await axios.put(`${apiEndpoint}/review/${reviewId}`, epilpost);
         alert("글이 수정되었습니다.");
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
@@ -51,7 +52,7 @@ export const UpdateApi = async ({ epilpost, reviewId }: propsType) => {
 
 export const DeleteApi = async ({ reviewId }: propsType) => {
     try {
-        await axios.delete(`/review/${reviewId}`);
+        await axios.delete(`${apiEndpoint}/review/${reviewId}`);
         alert("글이 삭제되었습니다.");
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
