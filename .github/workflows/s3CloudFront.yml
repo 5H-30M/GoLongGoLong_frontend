@@ -1,11 +1,12 @@
 name: S3 deploy with cloud front
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
+    
+env:
+  CI: false
 
 jobs:
   run:
