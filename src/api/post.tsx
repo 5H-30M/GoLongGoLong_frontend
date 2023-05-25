@@ -9,7 +9,7 @@ interface propsType {
 
 export const ViewAllApi = async () => {
     try {
-        let res = await axios.get(`${apiEndpoint}/api/board`);
+        let res = await axios.get(`${apiEndpoint}/board`);
         return res.data;
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
