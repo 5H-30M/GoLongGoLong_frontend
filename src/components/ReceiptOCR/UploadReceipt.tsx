@@ -1,15 +1,28 @@
 import { Container } from "components/Common/PostStyle";
 import { useRef, useState, useEffect } from "react";
-import UploadImage from "utils/S3";
 import styled from "styled-components";
 import { Row, Column } from "components/Common/DivStyle";
 import defaultImg from "../../assets/imgs/default.png";
 import { GreyButton } from "components/Common/ButtonStyle";
-import { processReceiptImage } from "./OCR";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { PostApi } from "api/ocr";
+import { SendApi } from "api/donation";
+import { useAppSelector } from "hooks/useAppSelector";
+import { ViewApi } from "api/review";
+import { epilPostType } from "utils/types";
+import { formattedAmount } from "components/Common/CalculateInfo";
 
 const UploadReceipt = () => {
+    const epilpostId = useParams().id;
+    const getPostId = async () => {
+        if (epilpostId) {
+            const res: epilPostType = await ViewApi(parseInt(epilpostId));
+            const postId: number = res.postId;
+            return postId;
+        }
+    };
     const navigate = useNavigate();
+    const userId = window.localStorage.getItem("userId");
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [selectedFile, setSelectedFile] = useState<File>();
     const [OCRresult, setOCRResult] = useState<number>(-1);
@@ -19,22 +32,42 @@ const UploadReceipt = () => {
         }
     };
     useEffect(() => {
-        if (selectedFile) {
-            const reader = new FileReader();
-            reader.addEventListener("load", () => {
-                // base64String 변수에 파일의 Base64 인코딩 바이트 값을 저장한다.
-                const base64String = reader.result as string;
-                console.log(base64String);
-                processReceiptImage(base64String);
-            });
-
-            reader.readAsDataURL(selectedFile);
-        }
+        const OCR = async () => {
+            // 파일 선택 시 바로 OCR을 거친다.
+            if (selectedFile) {
+                const res = await PostApi(selectedFile.name);
+                setOCRResult(res.totalPrice);
+            }
+        };
+        OCR();
     }, [selectedFile]);
-    const handleGetGOL = () => {
-        if (window.confirm("653750 고롱을 수령하시겠습니까?")) {
-            alert("고롱이 지급되었습니다.");
-            navigate("/");
+
+    const handleGetGOL = async () => {
+        if (OCRresult < 1) {
+            alert("금액이 잘못 인식되었습니다. 다시 시도해주세요.");
+        } else {
+            const formatted = formattedAmount(OCRresult);
+            if (window.confirm(`${formatted}고롱을 수령하시겠습니까?`)) {
+                try {
+                    //고롱 지급 api
+                    const postId = await getPostId();
+                    if (postId && userId) {
+                        const donation = {
+                            amount: OCRresult,
+                            fromId: postId,
+                            toId: parseInt(userId),
+                        };
+                        await SendApi(donation);
+                    }
+                    alert(`${formatted} 고롱이 지급되었습니다.`);
+                    navigate("/");
+                } catch (err) {
+                    alert(
+                        "고롱 송금 중 오류가 발생했습니다. 다시 시도해주세요."
+                    );
+                    alert(`/epilogue/post/${epilpostId}`);
+                }
+            }
         }
     };
 
@@ -86,12 +119,11 @@ const UploadReceipt = () => {
                     </Row>
                 </Column>
             </ReceiptImg>
-            <Result onClick={handleGetGOL}>
-                {/* {OCRresult !== -1 ? OCRresult : 0}&nbsp; */}
-                {selectedFile && "653750 "}
-                <p style={{ color: "#F1B95C" }}>&nbsp;고롱</p>
+            <GetButton onClick={handleGetGOL}>
+                {OCRresult < 1 ? 0 : formattedAmount(OCRresult)}&nbsp;
+                <p style={{ color: "#F1B95C" }}>고롱</p>
                 &nbsp;수령하기
-            </Result>
+            </GetButton>
         </Container>
     );
 };
@@ -105,7 +137,7 @@ const ReceiptImg = styled.div`
         object-fit: contain;
     }
 `;
-const Result = styled(Row)`
+const GetButton = styled(Row)`
     justify-content: center;
     align-items: center;
     background-color: #fcf1de;

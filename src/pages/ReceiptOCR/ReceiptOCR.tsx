@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ViewApi } from "api/post";
 import UploadReceipt from "components/ReceiptOCR/UploadReceipt";
-import { testPost } from "redux/authSlice";
 
 const ReceiptOCR = () => {
     const postId = useParams().id;
