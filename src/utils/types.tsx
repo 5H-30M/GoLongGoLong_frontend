@@ -1,8 +1,29 @@
-export interface donationsType {
+export interface donationType {
     post_id: number;
-    donated_at: string;
+    title: string;
+    status: number;
+    uploader_id: number;
+    images: string[];
+    postTransaction: transitionType;
+    myTransaction: transitionType;
+}
+
+export interface transitionType {
+    transactionId: string;
     amount: number;
-    trx_id: string[];
+    fromId: number;
+    toId: number;
+    privateKey: string;
+    fromAddress: string;
+    toAddress: string;
+    transactionCreatedAt: string;
+    type: number;
+}
+
+export interface postingDonationType {
+    amount: number;
+    fromId: number;
+    toId: number;
 }
 
 export interface notificationsType {
@@ -12,22 +33,24 @@ export interface notificationsType {
     tag: boolean;
 }
 
-//donations, interests, notifications는 api로 조회해오는 것이므로 나중에 삭제
-//api가 만들어지면 그때 수정할 것
-export interface userType {
-    user_id: number;
-    donations: donationsType[];
-    interests: number[];
-    notifications: notificationsType[];
-    fundraisings: postType[];
-    profile_img_url: string;
-    token_amount: number;
-    nickname: string;
-    sns_email: string;
-    created_at: string;
+export interface userType_new {
+    createdAt: string;
+    goltokens: number;
+    id: number;
+    isVerified: true;
+    kakaoId: number;
+    name: string;
+    nickName: string;
+    postsByMember: postType[];
+    privateKey: string;
+    profileImgUrl: string;
+    snsEmail: string;
+    snsProfile: number;
+    snsType: number;
+    token: string;
+    walletUrl: string;
     region: string;
 }
-
 export interface postingEpilType {
     content: string;
     postId: number;
@@ -60,6 +83,8 @@ export interface postingPostType {
     target_amount: number;
     title: string;
     uploader_id: number;
+    privateKey: string;
+    walletAddress: string;
 }
 export interface postType {
     amount: number;
@@ -75,6 +100,8 @@ export interface postType {
     target_amount: number;
     title: string;
     uploader_id: number;
+    privateKey: string;
+    walletAddress: string;
 }
 
 export interface commentType {
@@ -88,4 +115,15 @@ export interface postingCommentType {
     content: string;
     review_id: number;
     writer_id: number;
+}
+
+export interface walletType {
+    privateKey: string;
+    walletAddress: string;
+}
+
+export interface updateUserType {
+    nickName?: string;
+    profileImgUrl?: string;
+    region?: string;
 }
