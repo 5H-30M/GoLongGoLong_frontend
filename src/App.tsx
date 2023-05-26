@@ -31,7 +31,7 @@ declare global {
 
 function App() {
     //임시 데이터!! 나중에 삭제!!
-    window.localStorage.setItem("userId", "1");
+    window.localStorage.setItem("userId", "3");
     //api를 통해 post 정보를 가져와 리덕스에 저장
     const dispatch = useAppDispatch();
     useEffect(() => {
