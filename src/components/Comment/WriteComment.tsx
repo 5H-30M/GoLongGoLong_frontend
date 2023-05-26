@@ -2,8 +2,7 @@ import { Row } from "components/Common/DivStyle";
 import { Container, GreyDiv, Button } from "./Style";
 import { useState } from "react";
 import { WriteApi } from "api/comment";
-import { epilPostType, postingCommentType, userType } from "utils/types";
-import { testUser } from "redux/authSlice";
+import { epilPostType, postingCommentType } from "utils/types";
 import { useAppSelector } from "hooks/useAppSelector";
 
 interface propsType {
@@ -25,13 +24,16 @@ const WriteComment = ({ epilpost }: propsType) => {
     const handleSubmit = () => {
         if (window.confirm("댓글을 작성하시겠습니까?")) {
             if (input) {
-                //post api
-                const comment: postingCommentType = {
-                    content: input,
-                    review_id: epilpost.id,
-                    writer_id: user.user_id,
-                };
-                WriteComment(comment);
+                if (user) {
+                    const comment: postingCommentType = {
+                        content: input,
+                        review_id: epilpost.id,
+                        writer_id: user && user.id,
+                    };
+                    WriteComment(comment);
+                } else {
+                    alert("로그인 후 이용하실 수 있습니다.");
+                }
             } else {
                 alert("내용을 입력해주세요.");
             }
@@ -43,11 +45,7 @@ const WriteComment = ({ epilpost }: propsType) => {
             style={{ alignItems: "flex-end", padding: "50px 0", gap: "10px" }}
         >
             <GreyDiv>
-                <input
-                    name="input"
-                    value={input}
-                    onChange={handleInput}
-                ></input>
+                <input type="text" value={input} onChange={handleInput}></input>
             </GreyDiv>
             <Row style={{ gap: "10px", alignItems: "center" }}>
                 <text>{input ? input.length : 0}/500</text>

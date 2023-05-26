@@ -23,8 +23,6 @@ export const GreyDiv = styled(Row)`
         height: 100%;
         width: 100%;
         padding: 5px;
-
-        border: none;
         outline: none;
     }
 `;

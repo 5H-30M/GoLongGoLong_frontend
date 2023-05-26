@@ -1,5 +1,5 @@
 import Comments from "./Comments";
-import WriteComment from "./WirteComment";
+import WriteComment from "./WriteComment";
 import { commentType, epilPostType } from "utils/types";
 import { Container } from "./Style";
 
