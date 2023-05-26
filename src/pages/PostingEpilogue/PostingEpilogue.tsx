@@ -31,7 +31,7 @@ const PostingEpilogue = () => {
         usedList: {},
     });
     const handleSubmit = async () => {
-        const res = await WriteApi({ epilpost });
+        const res = await WriteApi(epilpost);
         if (res) {
             //post 성공시 게시판으로 이동
             navigator("/");
