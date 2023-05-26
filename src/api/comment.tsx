@@ -14,7 +14,19 @@ export const WriteApi = async (comment: postingCommentType) => {
 export const DeleteApi = async (commentId: number) => {
     try {
         await axios.delete(`${apiEndpoint}/board/comment/${commentId}`);
-        alert("댓글이 삭제되었습니다.");
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
+};
+
+interface updateType {
+    commentId: number;
+    content: postingCommentType;
+}
+export const UpdateApi = async ({ commentId, content }: updateType) => {
+    try {
+        await axios.patch(`${apiEndpoint}/board/comment/${commentId}`, content);
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
         else console.log(err);

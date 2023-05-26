@@ -17,7 +17,7 @@ export const ViewAllApi = async () => {
     }
 };
 
-export const WriteApi = async ({ post }: propsType) => {
+export const WriteApi = async (post: postingPostType) => {
     try {
         await axios.post(`${apiEndpoint}/board`, post);
         alert("글이 작성되었습니다.");
@@ -52,7 +52,7 @@ export const UpdateApi = async ({ post, postId }: propsType) => {
     }
 };
 
-export const DeleteApi = async ({ postId }: propsType) => {
+export const DeleteApi = async (postId: number) => {
     try {
         await axios.delete(`${apiEndpoint}/board/${postId}`);
         alert("글이 삭제되었습니다.");

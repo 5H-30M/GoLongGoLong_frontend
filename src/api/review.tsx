@@ -17,7 +17,7 @@ export const ViewAllApi = async () => {
     }
 };
 
-export const ViewApi = async ({ reviewId }: propsType) => {
+export const ViewApi = async (reviewId: number) => {
     try {
         let res = await axios.get(`${apiEndpoint}/review/${reviewId}`);
         return res.data;
@@ -27,7 +27,17 @@ export const ViewApi = async ({ reviewId }: propsType) => {
     }
 };
 
-export const WriteApi = async ({ epilpost }: propsType) => {
+export const ViewByPostIdApi = async (postId: number) => {
+    try {
+        let res = await axios.get(`${apiEndpoint}/review/board/${postId}`);
+        return res.data;
+    } catch (err) {
+        if (err instanceof Error) console.log(err.message);
+        else console.log(err);
+    }
+};
+
+export const WriteApi = async (epilpost: postingEpilType) => {
     try {
         await axios.post(`${apiEndpoint}/review`, epilpost);
         alert("글이 작성되었습니다.");
@@ -50,7 +60,7 @@ export const UpdateApi = async ({ epilpost, reviewId }: propsType) => {
     }
 };
 
-export const DeleteApi = async ({ reviewId }: propsType) => {
+export const DeleteApi = async (reviewId: number) => {
     try {
         await axios.delete(`${apiEndpoint}/review/${reviewId}`);
         alert("글이 삭제되었습니다.");
