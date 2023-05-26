@@ -3,16 +3,16 @@ import { Container, TrackingDiv, State, Circle, Bar, Text } from "./Style";
 import { useState } from "react";
 import ShowTxModal from "ShowTxModal/ShowTxModal";
 import { useNavigate } from "react-router-dom";
+import { donationType, transitionType } from "utils/types";
 
 interface propsType {
-    postId: number;
-    status: number;
-    txList: string[];
+    donation: donationType;
 }
 
-const DonationTracking = ({ postId, status, txList }: propsType) => {
+const DonationTracking = ({ donation }: propsType) => {
     const [modal, setModal] = useState<boolean>(false);
-    const [txId, setTxId] = useState<string | undefined>();
+    const [tx, setTx] = useState<transitionType>();
+    const [status, setStatus] = useState<number>(0);
     const navigate = useNavigate();
 
     return (
@@ -22,11 +22,12 @@ const DonationTracking = ({ postId, status, txList }: propsType) => {
                     내 기부금 트래킹
                 </text>
                 <TrackingDiv>
-                    {status >= 0 ? (
+                    {donation.status >= 0 ? (
                         <State
                             onClick={() => {
                                 setModal(true);
-                                setTxId(txList[0]);
+                                setTx(donation.myTransaction);
+                                setStatus(0);
                             }}
                             style={{ cursor: "pointer" }}
                         >
@@ -39,13 +40,14 @@ const DonationTracking = ({ postId, status, txList }: propsType) => {
                             <Text>내 기부</Text>
                         </State>
                     )}
-                    {status >= 1 ? (
+                    {donation.status >= 1 ? (
                         <>
                             <Bar className="checked_bar"></Bar>
                             <State
                                 onClick={() => {
                                     setModal(true);
-                                    setTxId(txList[1]);
+                                    setTx(donation.myTransaction);
+                                    setStatus(1);
                                 }}
                                 style={{ cursor: "pointer" }}
                             >
@@ -63,13 +65,14 @@ const DonationTracking = ({ postId, status, txList }: propsType) => {
                         </>
                     )}
 
-                    {status >= 2 ? (
+                    {donation.status >= 2 ? (
                         <>
                             <Bar className="checked_bar"></Bar>
                             <State
                                 onClick={() => {
                                     setModal(true);
-                                    setTxId(txList[2]);
+                                    setTx(donation.postTransaction);
+                                    setStatus(2);
                                 }}
                                 style={{ cursor: "pointer" }}
                             >
@@ -86,12 +89,14 @@ const DonationTracking = ({ postId, status, txList }: propsType) => {
                             </State>
                         </>
                     )}
-                    {status == 4 ? (
+                    {donation.status == 3 ? (
                         <>
                             <Bar className="checked_bar"></Bar>
                             <State
                                 onClick={() => {
-                                    navigate(`/epilogue/post/3`);
+                                    navigate(
+                                        `/epilogue/post/${donation.post_id}`
+                                    );
                                 }}
                                 style={{ cursor: "pointer" }}
                             >
@@ -111,7 +116,9 @@ const DonationTracking = ({ postId, status, txList }: propsType) => {
                 </TrackingDiv>
             </Column>
 
-            {modal && txId && <ShowTxModal txId={txId} setModal={setModal} />}
+            {modal && tx && (
+                <ShowTxModal tx={tx} setModal={setModal} status={status} />
+            )}
         </Container>
     );
 };

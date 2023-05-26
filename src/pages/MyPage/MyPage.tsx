@@ -1,7 +1,5 @@
 import { Container } from "components/Common/MyPageStyle";
 import { Row, Column } from "components/Common/DivStyle";
-import { userType } from "utils/types";
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Interest from "components/MyInterest/Interest";
 import styled from "styled-components";
@@ -9,19 +7,76 @@ import pawprint from "../../assets/imgs/pawprint.png";
 import { ThinLine } from "components/Common/PostStyle";
 import { GreyButton } from "components/Common/ButtonStyle";
 import { Link } from "react-router-dom";
-import { testUser } from "redux/authSlice";
+import { useAppSelector } from "hooks/useAppSelector";
+import { formattedAmount } from "components/Common/CalculateInfo";
+import { UpdateApi } from "api/member";
 
 const MyPage = () => {
-    const userId = useParams().id;
-    const [user, setUser] = useState<userType>(testUser);
+    const user = useAppSelector((state) => state.auth.userData);
+    const [imgUrl, setImgUrl] = useState<string>();
+    const [nick, setNick] = useState<string>();
+    const [region, setRegion] = useState<string>();
 
     useEffect(() => {
-        //userId를 이용해 user 정보를 가져온다.
-        // const getUser = async () => {
-        //     setUser(await ViewApi(id));
-        // };
-        // getUser();
-    }, []);
+        if (user) {
+            setImgUrl(user.profileImgUrl);
+            setNick(user.nickName);
+            setRegion(user.region);
+        }
+    }, [user]);
+
+    const handleNick = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setNick(e.target.value);
+    };
+    const handleRegion = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setRegion(e.target.value);
+    };
+
+    const [imgUdt, setImgUdt] = useState<boolean>(false);
+    const [nickUdt, setNickUdt] = useState<boolean>(false);
+    const [regionUdt, setRegionUdt] = useState<boolean>(false);
+    const handleImgUdt = async () => {
+        setImgUdt(!imgUdt);
+
+        if (imgUdt && user) {
+            const userId = user.id;
+            const updated = {
+                profileImgUrl: imgUrl,
+            };
+            if (window.confirm("프로필 이미지를 수정하시겠습니까?")) {
+                await UpdateApi({ userId, updated });
+                window.location.reload();
+            }
+        }
+    };
+    const handleNickUdt = async () => {
+        setNickUdt(!nickUdt);
+
+        if (nickUdt && user) {
+            const userId = user.id;
+            const updated = {
+                nickName: nick,
+            };
+            if (window.confirm("닉네임을 수정하시겠습니까?")) {
+                await UpdateApi({ userId, updated });
+                window.location.reload();
+            }
+        }
+    };
+    const handleRegionUdt = async () => {
+        setRegionUdt(!regionUdt);
+
+        if (regionUdt && user) {
+            const userId = user.id;
+            const updated = {
+                region: region,
+            };
+            if (window.confirm("지역을 수정하시겠습니까?")) {
+                await UpdateApi({ userId, updated });
+                window.location.reload();
+            }
+        }
+    };
 
     return (
         <Container>
@@ -46,14 +101,25 @@ const MyPage = () => {
                                     gap: "130px",
                                 }}
                             >
-                                <img
-                                    src={user.profile_img_url}
+                                <Column
                                     style={{
-                                        width: "151px",
-                                        height: "151px",
-                                        borderRadius: "3px",
+                                        alignItems: "flex-end",
+                                        gap: "10px",
                                     }}
-                                ></img>
+                                >
+                                    <img
+                                        src={user.profileImgUrl}
+                                        style={{
+                                            width: "151px",
+                                            height: "151px",
+                                            borderRadius: "3px",
+                                        }}
+                                    ></img>
+                                    <UpdateButton onClick={handleImgUdt}>
+                                        {imgUdt ? "수정 완료" : "수정하기"}
+                                    </UpdateButton>
+                                </Column>
+
                                 <Column
                                     style={{
                                         justifyContent: "flex-end",
@@ -70,7 +136,7 @@ const MyPage = () => {
                                     ></img>
                                     <Row>
                                         <text style={{ fontSize: "21px" }}>
-                                            {user.token_amount}
+                                            {formattedAmount(user.goltokens)}
                                         </text>
                                         <text
                                             style={{
@@ -106,12 +172,53 @@ const MyPage = () => {
                                             gap: "10px",
                                         }}
                                     >
-                                        <text className="value">
-                                            {user.nickname}
-                                        </text>
-                                        <UpdateNickname>
-                                            수정하기
-                                        </UpdateNickname>
+                                        {nickUdt ? (
+                                            <input
+                                                type="text"
+                                                value={nick}
+                                                onChange={handleNick}
+                                                style={{ textAlign: "right" }}
+                                            ></input>
+                                        ) : (
+                                            <text className="value">
+                                                {user.nickName}
+                                            </text>
+                                        )}
+                                        <UpdateButton onClick={handleNickUdt}>
+                                            {nickUdt ? "수정 완료" : "수정하기"}
+                                        </UpdateButton>
+                                    </Column>
+                                </Row>
+                                <Row
+                                    style={{
+                                        justifyContent: "space-between",
+                                    }}
+                                >
+                                    <text>지역</text>
+                                    <Column
+                                        style={{
+                                            alignItems: "flex-end",
+                                            gap: "10px",
+                                        }}
+                                    >
+                                        {regionUdt ? (
+                                            <input
+                                                type="text"
+                                                value={region}
+                                                onChange={handleRegion}
+                                                style={{ textAlign: "right" }}
+                                            ></input>
+                                        ) : (
+                                            <text className="value">
+                                                {user.region}
+                                            </text>
+                                        )}
+
+                                        <UpdateButton onClick={handleRegionUdt}>
+                                            {regionUdt
+                                                ? "수정 완료"
+                                                : "수정하기"}
+                                        </UpdateButton>
                                     </Column>
                                 </Row>
                                 <Row
@@ -121,7 +228,7 @@ const MyPage = () => {
                                 >
                                     <text>이메일</text>
                                     <text className="value">
-                                        {user.sns_email}
+                                        {user.snsEmail}
                                     </text>
                                 </Row>
                                 <Row
@@ -131,7 +238,7 @@ const MyPage = () => {
                                 >
                                     <text>가입 날짜</text>
                                     <text className="value">
-                                        {user.created_at}
+                                        {user.createdAt}
                                     </text>
                                 </Row>
                             </Column>
@@ -148,7 +255,7 @@ const MyPage = () => {
                                 gap: "30px",
                             }}
                         >
-                            {user.fundraisings.map((item, index) => (
+                            {user.postsByMember.map((item, index) => (
                                 <Interest
                                     key={index}
                                     postId={item.post_id ? item.post_id : -1}
@@ -175,8 +282,12 @@ const InfoBox = styled(Column)`
     .value {
         color: #888888;
     }
+    input {
+        border: none;
+        outline: none;
+    }
 `;
-const UpdateNickname = styled(GreyButton)`
+const UpdateButton = styled(GreyButton)`
     width: 73px;
     height: 23px;
 `;

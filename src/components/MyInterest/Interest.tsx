@@ -2,8 +2,10 @@ import { StyledImg, GreyDiv } from "components/Common/MyPageStyle";
 import { Column } from "components/Common/DivStyle";
 import { postType } from "utils/types";
 import { useState, useEffect } from "react";
-import { ViewApi } from "api/post";
+import * as postapi from "api/post";
+import * as memapi from "api/member";
 import { Link } from "react-router-dom";
+import CardInfo from "components/CardInfo/CardInfo";
 
 interface propsType {
     postId: number;
@@ -11,36 +13,51 @@ interface propsType {
 
 const Interest = ({ postId }: propsType) => {
     const [post, setPost] = useState<postType>();
+    const [user, setUser] = useState<string>();
 
     //postId로 post 정보를 가져온다.
     useEffect(() => {
         const getPost = async () => {
-            setPost(await ViewApi(postId));
+            setPost(await postapi.ViewApi(postId));
         };
 
         getPost();
     }, []);
+    //user 정보를 가져온다.
+    useEffect(() => {
+        const getUser = async (userId: number) => {
+            let author = await memapi.ViewApi(userId);
+            setUser(author.nickname);
+        };
+        if (post) {
+            getUser(post.uploader_id);
+        }
+    }, [post]);
 
-    return (
-        <Link
-            to={`/post/${postId}`}
-            style={{ color: "black", textDecoration: "none" }}
-        >
-            <GreyDiv>
-                <StyledImg src={post?.images[0]}></StyledImg>
-                <Column
-                    style={{
-                        height: "134px",
-                        justifyContent: "space-between",
-                    }}
-                >
-                    <Column style={{ gap: "10px" }}>
-                        <text className="postTitle">{post?.title}</text>
-                        <text className="author">{post?.uploader_id}</text>
-                    </Column>
+    return post ? (
+        <GreyDiv>
+            <Link
+                to={`/post/${postId}`}
+                style={{ color: "black", textDecoration: "none" }}
+            >
+                <StyledImg src={post.images[0]}></StyledImg>
+            </Link>
+            <Column
+                style={{
+                    height: "134px",
+                    justifyContent: "space-between",
+                    width: "100%",
+                }}
+            >
+                <Column style={{ gap: "10px" }}>
+                    <text className="postTitle">{post.title}</text>
+                    <text className="author">{user ? user : ""}</text>
                 </Column>
-            </GreyDiv>
-        </Link>
+                <CardInfo post={post}></CardInfo>
+            </Column>
+        </GreyDiv>
+    ) : (
+        <></>
     );
 };
 
