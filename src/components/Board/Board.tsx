@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { Filtering } from "components/FilterMenu/Filtering";
 import NoPostings from "components/FilterMenu/NoPostings";
 import Spinner from "components/Spinner/Spinner";
+import PostingButton from "components/PostingButton/PostingButton";
 
 interface propsType {
     kindOfCard: string;
@@ -20,7 +21,7 @@ const Board = ({ kindOfCard, donaPosts, epilPosts }: propsType): any => {
     const isLoading = useAppSelector((state) => state.post.isLoading);
     const filteredBy = useAppSelector((state) => state.post.filteredBy);
     const user = useAppSelector((state) => state.auth.userData);
-    const region = user.region;
+    const region = user ? user.region : "";
     const renderCard = () => {
         //kindOfCard props가 "donation"일 경우 <DonationsCard> 컴포넌트를, 아닐 경우 <EpilogueCard> 컴포넌트를 렌더한다.
         const result: any[] = [];
@@ -99,6 +100,7 @@ const Board = ({ kindOfCard, donaPosts, epilPosts }: propsType): any => {
     return (
         <Container>
             <Cards>{renderCard()}</Cards>
+            <PostingButton />
         </Container>
     );
 };
