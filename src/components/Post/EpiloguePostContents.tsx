@@ -4,6 +4,7 @@ import { GreyButton } from "components/Common/ButtonStyle";
 import { postType, epilPostType } from "utils/types";
 import { Column } from "components/Common/DivStyle";
 import { PlanList } from "./Plans";
+import { formattedAmount } from "components/Common/CalculateInfo";
 
 interface propsType {
     post: postType;
@@ -33,7 +34,9 @@ const EpiloguePostContents = ({ post, epilpost }: propsType) => {
                     <text>명이 참여하여</text>
                 </RowDiv>
                 <RowDiv>
-                    <text className="number">{post.amount}</text>
+                    <text className="number">
+                        {formattedAmount(post.amount)}
+                    </text>
                     <text>원이 모였습니다</text>
                 </RowDiv>
                 <a

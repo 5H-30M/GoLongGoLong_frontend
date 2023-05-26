@@ -8,10 +8,11 @@ import {
     Thinline,
 } from "./Style";
 import { Column, Row } from "components/Common/DivStyle";
-import { userType } from "utils/types";
+import { userType_new } from "utils/types";
+import { formattedAmount } from "components/Common/CalculateInfo";
 
 interface propsType {
-    user: userType;
+    user: userType_new;
 }
 
 const Payment = ({ user }: propsType) => {
@@ -44,8 +45,8 @@ const Payment = ({ user }: propsType) => {
             merchant_uid: `mid_${new Date().getTime()}`,
             name: "결제 테스트",
             amount: chargenum,
-            buyer_name: user.nickname,
-            buyer_email: user.sns_email,
+            buyer_name: user.nickName,
+            buyer_email: user.snsEmail,
         };
         IMP.request_pay(data, callback);
     };
@@ -64,7 +65,7 @@ const Payment = ({ user }: propsType) => {
             alert("결제 성공");
             if (chargenum) {
                 setChargenum(0);
-                user.token_amount += chargenum;
+                user.goltokens += chargenum;
                 //post로 user 정보 업데이트
             }
         } else {
@@ -89,7 +90,7 @@ const Payment = ({ user }: propsType) => {
                 <SpaceBetween>
                     <text>보유 토큰</text>
                     <Row>
-                        <text>{user.token_amount}</text>
+                        <text>{formattedAmount(user.goltokens)}</text>
                         <text style={{ color: "#F1B95C" }}>&nbsp; 고롱</text>
                     </Row>
                 </SpaceBetween>

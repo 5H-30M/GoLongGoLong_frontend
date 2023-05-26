@@ -1,16 +1,20 @@
 import { Row } from "components/Common/DivStyle";
 import { Container } from "./Style";
-import { calLeftDays, calPercent } from "components/Common/CalculateInfo";
+import {
+    calLeftDays,
+    calPercent,
+    formattedAmount,
+} from "components/Common/CalculateInfo";
 import { postType } from "utils/types";
 
 interface propsType {
     post: postType;
 }
 
-const FundStatus = ({ post }: propsType) => {
-    const totalAmount = post.amount;
-    const percent = calPercent({ post });
-    const leftDays = calLeftDays({ post });
+const CardInfo = ({ post }: propsType) => {
+    const totalAmount = formattedAmount(post.amount);
+    const percent = calPercent(post);
+    const leftDays = calLeftDays(post);
 
     return (
         <Container>
@@ -31,4 +35,4 @@ const FundStatus = ({ post }: propsType) => {
     );
 };
 
-export default FundStatus;
+export default CardInfo;

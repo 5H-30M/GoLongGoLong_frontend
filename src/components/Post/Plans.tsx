@@ -1,6 +1,7 @@
 import { Container, ThinLine, Line } from "components/Common/PostStyle";
 import { Row } from "components/Common/DivStyle";
 import { postType } from "utils/types";
+import { formattedAmount } from "components/Common/CalculateInfo";
 
 interface propsType {
     post: postType;
@@ -30,7 +31,7 @@ export const PlanList = ({ planName, planNum }: planListType) => {
     return (
         <Row style={{ justifyContent: "space-between", paddingBottom: "7px" }}>
             <li>{planName}</li>
-            <div>{planNum}원</div>
+            <div>{formattedAmount(planNum)}원</div>
         </Row>
     );
 };

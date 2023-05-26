@@ -2,28 +2,23 @@ import styled from "styled-components";
 import { Column, Row } from "components/Common/DivStyle";
 import { postType } from "utils/types";
 import StatusButton from "./StatusButton";
-import { calLeftDays, calPercent } from "components/Common/CalculateInfo";
+import {
+    calLeftDays,
+    calPercent,
+    dateFormat,
+    formattedAmount,
+} from "components/Common/CalculateInfo";
 
 interface propsType {
     post: postType;
 }
 
 const PostInfo = ({ post }: propsType) => {
-    const totalAmount = post.amount;
+    const totalAmount = formattedAmount(post.amount);
     const donators = post.raised_people;
     const createdAt = post.created_at;
-    const percent = calPercent({ post });
-    const leftDays = calLeftDays({ post });
-    const dateFormat = (date: Date) => {
-        const formatted: string =
-            date.getFullYear() +
-            "." +
-            (date.getMonth() + 1) +
-            "." +
-            date.getDate();
-
-        return formatted;
-    };
+    const percent = calPercent(post);
+    const leftDays = calLeftDays(post);
     const startDate = dateFormat(new Date(createdAt));
     const endDate = dateFormat(
         new Date(
@@ -69,7 +64,8 @@ const PostInfo = ({ post }: propsType) => {
                     <Line></Line>
                     <RowDiv>
                         <text className="small">
-                            목표금액 &nbsp; {post.target_amount}원
+                            목표금액 &nbsp;{" "}
+                            {formattedAmount(post.target_amount)}원
                         </text>
                     </RowDiv>
                     <RowDiv>
