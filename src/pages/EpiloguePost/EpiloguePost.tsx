@@ -18,37 +18,32 @@ const EpiloguePost = () => {
     useEffect(() => {
         //uri의 epilpostId 이용해, post 정보를 가져온다.
         const getPost = async () => {
-            const reviewId: number = epilpostId ? parseInt(epilpostId) : -1;
-            //setEpilpost 사용시 딜레이 문제가 생기므로 마지막에 사용한다.
-            const epilpost: epilPostType = await reviewApi.ViewApi({
-                reviewId,
-            });
+            if (epilpostId) {
+                const reviewId: number = parseInt(epilpostId);
+                const epilpost: epilPostType = await reviewApi.ViewApi(
+                    reviewId
+                );
+                const postId: number = epilpost.postId;
+                setPost(await postApi.ViewApi(postId));
 
-            const postId: number = epilpost ? epilpost.postId : -1;
-            setPost(await postApi.ViewApi(postId));
-            setEpilpost(epilpost);
+                //setEpilpost 사용시 딜레이 문제가 생기므로 마지막에 사용한다.
+                setEpilpost(epilpost);
+            }
         };
 
         getPost();
     }, []);
 
-    return (
-        <>
-            {epilpost && post ? (
-                <Container>
-                    <PostInfo post={post}></PostInfo>
-                    <EpiloguePostContents post={post} epilpost={epilpost} />
-                    <Line />
-                    <Author />
-                    <CommentBox
-                        epilpost={epilpost}
-                        comments={epilpost.comments}
-                    />
-                </Container>
-            ) : (
-                ""
-            )}
-        </>
+    return epilpost && post ? (
+        <Container>
+            <PostInfo post={post}></PostInfo>
+            <EpiloguePostContents post={post} epilpost={epilpost} />
+            <Line />
+            <Author />
+            <CommentBox epilpost={epilpost} comments={epilpost.comments} />
+        </Container>
+    ) : (
+        <></>
     );
 };
 
