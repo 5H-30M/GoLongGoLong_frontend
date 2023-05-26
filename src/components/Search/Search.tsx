@@ -1,15 +1,14 @@
 import { Container, SearchBox, Input } from "./Style";
 import search from "../../assets/imgs/search.png";
-import { epilPostType, postType, userType, donationsType } from "utils/types";
 import { useEffect, useState } from "react";
-import { ViewByIdApi } from "api/userInfo";
-import { testUser } from "redux/authSlice";
-import { ViewApi } from "api/post";
+import { epilPostType, postType, donationType } from "utils/types";
+import * as postapi from "api/post";
+import * as memberapi from "api/member";
 
 interface propsType {
     donaPosts?: postType[] | undefined;
     epilPosts?: epilPostType[] | undefined;
-    donations?: donationsType[] | undefined;
+    donations?: donationType[] | undefined;
     setFilteredPosts: React.Dispatch<React.SetStateAction<any>>;
 }
 
@@ -23,21 +22,21 @@ const Search = ({
     const handleText = (e: React.ChangeEvent<HTMLInputElement>) => {
         setText(e.target.value);
     };
-    const getUser = (id: number) => {
-        //const user: userType =  ViewByIdApi(id);
-        const user = testUser;
-        return user;
-    };
+    // const getUser = (id: number) => {
+
+    //     return user;
+    // };
     const getPost = async (id: number) => {
-        const post = await ViewApi(id);
+        const post = await postapi.ViewApi(id);
         return post;
     };
     const filterDonaPosts = (donaPosts: (postType | undefined)[]) => {
         const foundPosts = donaPosts.slice().filter((post) => {
             if (post) {
                 return (
-                    post.title.includes(text) ||
-                    getUser(post.uploader_id).nickname.includes(text)
+                    // post.title.includes(text) ||
+                    // getUser(post.uploader_id).nickname.includes(text)
+                    true
                 );
             } else {
                 return false;
@@ -66,7 +65,7 @@ const Search = ({
 
         return foundEpilPosts;
     };
-    const filteredDonations = async (donations: donationsType[]) => {
+    const filteredDonations = async (donations: donationType[]) => {
         //donations에 해당하는 donaPosts를 가져와서 검색에 사용한다.
         let donaPosts = await Promise.all(
             donations?.map((it) => getPost(it.post_id))
@@ -92,7 +91,7 @@ const Search = ({
             const res = await filterEpilPosts(epilPosts);
             setFilteredPosts(res);
         };
-        const getfilteredDonations = async (donations: donationsType[]) => {
+        const getfilteredDonations = async (donations: donationType[]) => {
             const res = await filteredDonations(donations);
             setFilteredPosts(res);
         };

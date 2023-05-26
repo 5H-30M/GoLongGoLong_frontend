@@ -1,8 +1,7 @@
-import { ViewByIdApi } from "api/userInfo";
 import { Container, Info, Mark } from "./Style";
-import { userType } from "utils/types";
 import { useEffect, useState } from "react";
-import { testUser } from "redux/authSlice";
+import { ViewApi } from "api/member";
+import { userType_new } from "utils/types";
 
 interface propsType {
     thumbnail: string;
@@ -12,21 +11,21 @@ interface propsType {
 
 const Card = ({ thumbnail, title, uploader_id }: propsType) => {
     //작성자 id를 통해 작성자 정보를 가져온다.
-    const [user, setUser] = useState<userType>(testUser);
+    const [user, setUser] = useState<userType_new>();
 
-    // useEffect(() => {
-    //     const getUser = async () => {
-    //         setUser(await ViewByIdApi(uploader_id));
-    //     };
+    useEffect(() => {
+        const getUser = async () => {
+            setUser(await ViewApi(uploader_id));
+        };
 
-    //     getUser();
-    // }, []);
+        getUser();
+    }, []);
 
     return (
         <Info>
             <img src={thumbnail}></img>
             <text className="title">{title}</text>
-            <text className="author">{user?.nickname}</text>
+            <text className="author">{user?.nickName}</text>
         </Info>
     );
 };
