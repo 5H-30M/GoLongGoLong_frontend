@@ -6,7 +6,7 @@ import { Container, Pawprint, Buttons, Button } from "./Style";
 
 /* kakao */
 const KAKAO_REST_API_KEY = process.env.REACT_APP_KAKAO_API_KEY;
-const KAKAO_REDIRECT_URI = "http://localhost:3000/oauth";
+const KAKAO_REDIRECT_URI = "http://www.golonggolong.com/oauth";
 const KAKAO_AUTH_URI = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code`;
 
 /* naver */
@@ -20,7 +20,6 @@ const GOOGLE_REDIRECT_URI = "http://localhost:3000/google/callback";
 const GOOGLE_AUTH_URI = `https://accounts.google.com/o/oauth2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REDIRECT_URI}&response_type=token&scope=https://www.googleapis.com/auth/userinfo.email`;
 
 const SocialLogin = () => {
-    /* 인가 코드 요청까지 구현 */
     return (
         <Container>
             <text className="title">로그인</text>
