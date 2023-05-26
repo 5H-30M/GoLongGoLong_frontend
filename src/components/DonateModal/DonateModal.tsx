@@ -1,12 +1,17 @@
 import { Container, Box, Button, Charge } from "./Style";
 import { Column, Row } from "components/Common/DivStyle";
 import { Link } from "react-router-dom";
-import { userType } from "utils/types";
+import { postingDonationType } from "utils/types";
 import { useEffect, useState } from "react";
-import { testUser } from "redux/authSlice";
+import { PostApi } from "api/donation";
+import { useAppSelector } from "hooks/useAppSelector";
 
-const DonateModal = () => {
-    const [user, setUser] = useState<userType>(testUser);
+interface propsType {
+    postId: number;
+}
+
+const DonateModal = ({ postId }: propsType) => {
+    const user = useAppSelector((state) => state.auth.userData);
     const [isover, setIsover] = useState<boolean>(false);
     const [iszero, setIszero] = useState<boolean>(true);
     const [isclicked, setIsclicked] = useState<boolean>(true);
@@ -17,7 +22,7 @@ const DonateModal = () => {
             alert("잘못된 입력입니다. 숫자를 입력해주세요.");
         } else {
             //isover
-            if (number > user.token_amount) {
+            if (user && number > user.goltokens) {
                 setIsover(true);
             } else {
                 setIsover(false);
@@ -31,12 +36,30 @@ const DonateModal = () => {
             setNum(number);
         }
     };
-    const handleDonate = () => {
+    const donate = async (num: number) => {
+        if (user) {
+            const donation: postingDonationType = {
+                amount: num,
+                fromId: user.id,
+                toId: postId,
+            };
+
+            const result = await PostApi(donation);
+            return result;
+        }
+        return false;
+    };
+    const handleDonate = async () => {
         setIsclicked(true);
         if (!isover && !iszero) {
             if (window.confirm(`${num}고롱을 기부하시겠습니까?`)) {
-                alert("기부해주셔서 감사합니다.😽");
-                window.location.reload();
+                const result = num && (await donate(num));
+                if (result) {
+                    alert("기부해주셔서 감사합니다.😽");
+                    window.location.reload();
+                } else {
+                    alert("기부에 실패했습니다. 다시 시도해주세요.");
+                }
             }
         }
     };
@@ -49,7 +72,7 @@ const DonateModal = () => {
             <Box>
                 <text>보유 토큰</text>
                 <Row>
-                    <text>{user.token_amount}</text>
+                    <text>{user && user.goltokens}</text>
                     <text className="gol">&nbsp;고롱</text>
                 </Row>
             </Box>
