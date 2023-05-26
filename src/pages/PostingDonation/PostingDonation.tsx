@@ -9,6 +9,7 @@ import PostPlan from "components/Posting/PostPlan";
 import { WriteApi } from "api/post";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "hooks/useAppSelector";
+import { CreateWallet } from "utils/web3/CreateWallet";
 
 const PostingDonation = () => {
     const user = useAppSelector((state) => state.auth.userData);
@@ -20,10 +21,20 @@ const PostingDonation = () => {
         plans: {},
         target_amount: 0,
         title: "",
-        uploader_id: user.user_id,
+        uploader_id: user ? user.id : 0,
+        privateKey: "",
+        walletAddress: "",
     });
     const handleSubmit = async () => {
-        const res = await WriteApi({ post });
+        //지갑 생성
+        const wallet = await CreateWallet();
+        setPost({
+            ...post,
+            walletAddress: wallet.walletAddress,
+            privateKey: wallet.privateKey,
+        });
+
+        const res = await WriteApi(post);
         if (res) {
             //post 성공시 게시판으로 이동
             navigator("/");
