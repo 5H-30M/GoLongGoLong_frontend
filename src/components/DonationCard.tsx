@@ -17,11 +17,7 @@ const DonationCard = ({ post }: propsType) => {
             />
             <CardInfo post={post} />
 
-            {calLeftDays({ post }) == 0 ? (
-                <Card.CompleMark></Card.CompleMark>
-            ) : (
-                ""
-            )}
+            {calLeftDays(post) == 0 && <Card.CompleMark></Card.CompleMark>}
         </Card.Container>
     );
 };

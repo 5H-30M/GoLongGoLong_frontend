@@ -21,16 +21,13 @@ const EpilogueCard = ({ epilpost }: propsType) => {
 
     return (
         <Card.Container>
-            {post ? (
+            {post && (
                 <Card
                     thumbnail={post.images[0]}
                     title={post.title}
                     uploader_id={post.uploader_id}
                 />
-            ) : (
-                ""
             )}
-
             <Card.EpilMark></Card.EpilMark>
         </Card.Container>
     );
