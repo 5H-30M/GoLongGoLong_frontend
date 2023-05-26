@@ -21,9 +21,7 @@ import ReceiptOCR from "pages/ReceiptOCR/ReceiptOCR";
 import ChargeToken from "pages/ChargeToken/ChargeToken";
 import Oauth from "components/Login/Oauth";
 import { fetchUserInfo } from "redux/authSlice";
-import { GetKakaoUserApi } from "api/userInfo";
 import { RefreshTokenApi } from "api/auth";
-import CreateWallet from "utils/web3/CreateWallet";
 
 declare global {
     interface Window {
@@ -32,29 +30,34 @@ declare global {
 }
 
 function App() {
+    //임시 데이터!! 나중에 삭제!!
+    window.localStorage.setItem("userId", "1");
     //api를 통해 post 정보를 가져와 리덕스에 저장
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(fetchDonaPosts());
         dispatch(fetchEpilPosts());
+        //나중에 삭제!!
+        let user_id = window.localStorage.getItem("userId");
+        if (user_id) {
+            dispatch(fetchUserInfo(parseInt(user_id)));
+        }
     }, [dispatch]);
 
-    //access token이 있는 경우, 갱신한 뒤 사용자 정보를 리덕스에 저장한다.
+    //userId가 있는 경우, token을 갱신한 뒤 사용자 정보를 리덕스에 저장한다.
     useEffect(() => {
-        const getUser = async () => {
+        let user_id = window.localStorage.getItem("userId");
+
+        const getUser = async (userId: number) => {
             //토큰 갱신
-            let token = await RefreshTokenApi();
-
+            await RefreshTokenApi();
             //사용자 정보 리덕스 저장
-            let { data } = await GetKakaoUserApi({ token });
-            const email = data.kakao_account.email;
-
-            dispatch(fetchUserInfo({ email }));
+            await dispatch(fetchUserInfo(userId));
         };
 
-        const token = window.localStorage.getItem("accessToken");
-        if (token) {
-            getUser();
+        if (user_id) {
+            const userId = parseInt(user_id);
+            getUser(userId);
         }
     }, [dispatch]);
 
@@ -62,7 +65,6 @@ function App() {
         <div>
             <Router>
                 <GlobalStyle />
-                <CreateWallet password={"hi"} />
                 <Header />
                 <Routes>
                     <Route path="/" element={<MainAfterLogin />}></Route>
@@ -75,11 +77,11 @@ function App() {
                         element={<EpiloguePost />}
                     ></Route>
                     /* mypage */
-                    <Route path="/my/:id" element={<MyPage />} />
-                    <Route path="/my/donation/:id" element={<MyDonation />} />
-                    <Route path="/my/interest/:id" element={<MyInterest />} />
+                    <Route path="/my" element={<MyPage />} />
+                    <Route path="/my/donation" element={<MyDonation />} />
+                    <Route path="/my/interest" element={<MyInterest />} />
                     <Route
-                        path="/my/notification/:id"
+                        path="/my/notification"
                         element={<MyNotification />}
                     />
                     <Route

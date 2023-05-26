@@ -9,7 +9,7 @@ export const LoginApi = async ({ code }: loginApiType) => {
     try {
         let res = await axios.post(`${apiEndpoint}/api/oauth/token`, code);
         console.log(res.data); //콘솔에 찍히는 데이터 형태 확인 후 수정
-        //localStorage에 토큰과 만료정보를 저장한다.
+        //localStorage에 토큰과 만료정보, userId를 저장한다.
         window.localStorage.setItem("accessToken", res.data.access_token);
         window.localStorage.setItem("refreshToken", res.data.refresh_token);
         window.localStorage.setItem("expiresIn", res.data.expires_in);
@@ -17,6 +17,7 @@ export const LoginApi = async ({ code }: loginApiType) => {
             "refreshTokenExpiresIn",
             res.data.refresh_token_expires_in
         );
+        window.localStorage.setItem("userId", res.data.userId);
     } catch (err) {
         if (err instanceof Error) console.log(err.message);
         else console.log(err);
